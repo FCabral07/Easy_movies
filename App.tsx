@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Login from "./login/Login";
 import JoinNow from "./joinNow/joinNow";
+import CreateAccount from "./register/CreateAccount";
 
 const App = (): JSX.Element => {
   const Stack = createNativeStackNavigator();
@@ -15,6 +16,7 @@ const App = (): JSX.Element => {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+        <Stack.Screen name="CreateAccount" component={CreateAccount} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

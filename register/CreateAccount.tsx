@@ -15,17 +15,12 @@ import IconMaterial from "react-native-vector-icons/MaterialIcons";
 import Styles from "./Styles";
 import { useNavigation } from "@react-navigation/native";
 
-const Login = (): JSX.Element => {
+const CreateAccount = (): JSX.Element => {
   const navigation = useNavigation();
 
-  const handleCreateAccount = () => {
-    navigation.navigate("CreateAccount");
-  };
-
   const handleIconClick = () => {
-    navigation.navigate("JoinNow");
+    navigation.navigate("Login");
   };
-
   return (
     <ImageBackground
       source={require("../assets/background.jpeg")}
@@ -36,9 +31,9 @@ const Login = (): JSX.Element => {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={Styles.container}
         >
-          <ScrollView 
-          contentContainerStyle={Styles.scrollContainer}
-          showsHorizontalScrollIndicator={false}
+          <ScrollView
+            contentContainerStyle={Styles.scrollContainer}
+            showsHorizontalScrollIndicator={false}
           >
             <View>
               <TouchableOpacity onPress={handleIconClick}>
@@ -47,7 +42,6 @@ const Login = (): JSX.Element => {
                     name="arrow-back-ios"
                     size={25}
                     color="#F5F5F5"
-                    style={Styles.icon}
                   />
                 </View>
               </TouchableOpacity>
@@ -62,15 +56,38 @@ const Login = (): JSX.Element => {
 
             <View style={Styles.inputContainer}>
               <View style={Styles.inputWithIcon}>
-                <Icon name="user" size={25} color="#848484" style={Styles.icon} />
+                <Icon
+                  name="user"
+                  size={25}
+                  color="#848484"
+                  style={Styles.icon}
+                />
                 <TextInput
                   style={Styles.input}
-                  placeholder="Login"
+                  placeholder="Username"
                   placeholderTextColor="#848484"
                 />
               </View>
               <View style={Styles.inputWithIcon}>
-                <Icon name="lock" size={25} color="#848484" style={Styles.icon} />
+                <IconMaterial
+                  name="alternate-email"
+                  size={25}
+                  color="#848484"
+                  style={Styles.icon}
+                />
+                <TextInput
+                  style={Styles.input}
+                  placeholder="Email"
+                  placeholderTextColor="#848484"
+                />
+              </View>
+              <View style={Styles.inputWithIcon}>
+                <Icon
+                  name="lock"
+                  size={25}
+                  color="#848484"
+                  style={Styles.icon}
+                />
                 <TextInput
                   style={Styles.input}
                   placeholder="Password"
@@ -80,17 +97,8 @@ const Login = (): JSX.Element => {
               </View>
             </View>
 
-            <View style={Styles.createAccountForgot}>
-              <Text onPress={handleCreateAccount} style={Styles.link}>
-                Não tem uma conta? Crie uma
-              </Text>
-              <Text onPress={() => {}} style={Styles.link}>
-                Esqueci a senha
-              </Text>
-            </View>
-
             <TouchableOpacity style={Styles.button}>
-              <Text style={Styles.buttonText}>Entrar</Text>
+              <Text style={Styles.buttonText}>Criar conta</Text>
             </TouchableOpacity>
           </ScrollView>
         </KeyboardAvoidingView>
@@ -99,4 +107,4 @@ const Login = (): JSX.Element => {
   );
 };
 
-export default Login;
+export default CreateAccount;

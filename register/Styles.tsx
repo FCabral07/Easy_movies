@@ -47,16 +47,6 @@ const Styles = StyleSheet.create({
     height: 40,
     color: "#000",
   },
-  createAccountForgot: {
-    flexDirection: "row",
-    marginBottom: "4%",
-    marginTop: "3%",
-  },
-  link: {
-    color: "#F5F5F5",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
   logo: {
     position: 'relative',
     alignItems: "center",
