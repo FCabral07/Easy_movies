@@ -1,24 +1,57 @@
 import React from "react";
-import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
-import styles from "./Styles";
+import {
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+  Image,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
+import Icon from "react-native-vector-icons/AntDesign";
+import IconMaterial from "react-native-vector-icons/MaterialIcons";
+import Styles from "./Styles";
 import { useNavigation } from "@react-navigation/native";
+import ComponentBar from "../components/componentBar/ComponentBar";
 
-const Home = (): JSX.Element => {
+const Login = (): JSX.Element => {
   const navigation = useNavigation();
 
-  const handleLogin = () => {
-    navigation.navigate("Login" as never);
+  const handleCreateAccount = () => {
+    navigation.navigate("CreateAccount" as never);
+  };
+
+  const handleIconClick = () => {
+    navigation.navigate("JoinNow" as never);
+  };
+
+  const handleLoginClick = () => {
+    navigation.navigate("Home" as never);
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.containerInit}>
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Teste</Text>
-        </TouchableOpacity>
-      </View>
+    <View style={Styles.container}>
+      <ScrollView
+        contentContainerStyle={Styles.container}
+        showsHorizontalScrollIndicator={false}
+      >
+        <View>
+          <TouchableOpacity onPress={handleIconClick}>
+            <View style={Styles.arrowBack}>
+              <IconMaterial
+                name="arrow-back-ios"
+                size={25}
+                color="#F5F5F5"
+                style={Styles.icon}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+      <ComponentBar />
     </View>
   );
 };
 
-export default Home;
+export default Login;
