@@ -12,7 +12,7 @@ const JoinNow = (): JSX.Element => {
   const navigation = useNavigation();
 
   const handleLogin = () => {
-    navigation.navigate("Login");
+    navigation.navigate("Login" as never);
   };
 
   return (
@@ -25,7 +25,7 @@ const JoinNow = (): JSX.Element => {
           <View style={styles.containerInit}>
             <Text style={styles.text}>Seja bem-vindo</Text>
             <TouchableOpacity style={styles.button} onPress={handleLogin}>
-              <Text style={styles.buttonText}>Entrar</Text>
+              <Text style={styles.buttonText}>Começar</Text>
             </TouchableOpacity>
           </View>
         </View>

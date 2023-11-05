@@ -19,7 +19,11 @@ const CreateAccount = (): JSX.Element => {
   const navigation = useNavigation();
 
   const handleIconClick = () => {
-    navigation.navigate("Login");
+    navigation.navigate("Login" as never);
+  };
+
+  const handleCreateAccount = () => {
+    navigation.navigate("Login" as never);
   };
   return (
     <ImageBackground
@@ -59,45 +63,45 @@ const CreateAccount = (): JSX.Element => {
                 <Icon
                   name="user"
                   size={25}
-                  color="#848484"
+                  color="#FFF0F5"
                   style={Styles.icon}
                 />
                 <TextInput
                   style={Styles.input}
                   placeholder="Username"
-                  placeholderTextColor="#848484"
+                  placeholderTextColor="#FFF0F5"
                 />
               </View>
               <View style={Styles.inputWithIcon}>
                 <IconMaterial
                   name="alternate-email"
                   size={25}
-                  color="#848484"
+                  color="#FFF0F5"
                   style={Styles.icon}
                 />
                 <TextInput
                   style={Styles.input}
                   placeholder="Email"
-                  placeholderTextColor="#848484"
+                  placeholderTextColor="#FFF0F5"
                 />
               </View>
               <View style={Styles.inputWithIcon}>
                 <Icon
                   name="lock"
                   size={25}
-                  color="#848484"
+                  color="#FFF0F5"
                   style={Styles.icon}
                 />
                 <TextInput
                   style={Styles.input}
                   placeholder="Password"
-                  placeholderTextColor="#848484"
+                  placeholderTextColor="#FFF0F5"
                   secureTextEntry={true}
                 />
               </View>
             </View>
 
-            <TouchableOpacity style={Styles.button}>
+            <TouchableOpacity style={Styles.button} onPress={handleCreateAccount}>
               <Text style={Styles.buttonText}>Criar conta</Text>
             </TouchableOpacity>
           </ScrollView>

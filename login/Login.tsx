@@ -19,11 +19,15 @@ const Login = (): JSX.Element => {
   const navigation = useNavigation();
 
   const handleCreateAccount = () => {
-    navigation.navigate("CreateAccount");
+    navigation.navigate("CreateAccount" as never);
   };
 
   const handleIconClick = () => {
-    navigation.navigate("JoinNow");
+    navigation.navigate("JoinNow" as never);
+  };
+
+  const handleLoginClick = () => {
+    navigation.navigate("Home" as never);
   };
 
   return (
@@ -62,19 +66,19 @@ const Login = (): JSX.Element => {
 
             <View style={Styles.inputContainer}>
               <View style={Styles.inputWithIcon}>
-                <Icon name="user" size={25} color="#848484" style={Styles.icon} />
+                <Icon name="user" size={25} color="#FFF0F5" style={Styles.icon} />
                 <TextInput
                   style={Styles.input}
                   placeholder="Login"
-                  placeholderTextColor="#848484"
+                  placeholderTextColor="#FFF0F5"
                 />
               </View>
               <View style={Styles.inputWithIcon}>
-                <Icon name="lock" size={25} color="#848484" style={Styles.icon} />
+                <Icon name="lock" size={25} color="#FFF0F5" style={Styles.icon} />
                 <TextInput
                   style={Styles.input}
                   placeholder="Password"
-                  placeholderTextColor="#848484"
+                  placeholderTextColor="#FFF0F5"
                   secureTextEntry={true}
                 />
               </View>
@@ -89,7 +93,7 @@ const Login = (): JSX.Element => {
               </Text>
             </View>
 
-            <TouchableOpacity style={Styles.button}>
+            <TouchableOpacity style={Styles.button} onPress={handleLoginClick}>
               <Text style={Styles.buttonText}>Entrar</Text>
             </TouchableOpacity>
           </ScrollView>

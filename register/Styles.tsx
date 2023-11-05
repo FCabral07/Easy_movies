@@ -23,11 +23,6 @@ const Styles = StyleSheet.create({
     left: 0,
     zIndex: 0,
   },
-  label: {
-    color: "#848484",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
   inputContainer: {
     marginTop: 5,
   },
@@ -35,9 +30,11 @@ const Styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 10,
-    backgroundColor: '#FFF0F5',
+    backgroundColor: 'transparent',
     borderRadius: 6,
-    paddingLeft: 8
+    paddingLeft: 8,
+    borderBottomColor: '#f5f5f5',
+    borderBottomWidth: 1
   },
   icon: {
     marginRight: 10,
@@ -45,7 +42,7 @@ const Styles = StyleSheet.create({
   input: {
     flex: 1,
     height: 40,
-    color: "#000",
+    color: "#f5f5f5",
   },
   logo: {
     position: 'relative',
@@ -54,7 +51,7 @@ const Styles = StyleSheet.create({
   },
   text: {
     fontSize: 28,
-    color: '#000',
+    color: '#f5f5f5',
   },
   scrollContainer: {
     width: "100%",
