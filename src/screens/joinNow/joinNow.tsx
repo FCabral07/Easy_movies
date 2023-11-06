@@ -20,7 +20,7 @@ const JoinNow = (): JSX.Element => {
   return (
     // Definindo o background
     <ImageBackground
-      source={require("../assets/background.jpeg")}
+      source={require("../../../assets/background.jpeg")}
       style={styles.backgroundImage}
     >
       {/* Criando o container e escurecendo ele no overlay */}

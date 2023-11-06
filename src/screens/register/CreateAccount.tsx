@@ -30,7 +30,7 @@ const CreateAccount = (): JSX.Element => {
   return (
     // Background
     <ImageBackground
-      source={require("../assets/background.jpeg")}
+      source={require("../../../assets/background.jpeg")}
       style={Styles.backgroundImage}
     >
       {/* Escurecendo e definindo o teclado */}
@@ -60,7 +60,7 @@ const CreateAccount = (): JSX.Element => {
             {/* Logo */}
             <View style={Styles.logo}>
               <Image
-                source={require("../assets/izyFilm.png")}
+                source={require("../../../assets/izyFilm.png")}
                 style={{ width: 250, height: 250 }}
               />
             </View>

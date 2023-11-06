@@ -35,7 +35,7 @@ const Login = (): JSX.Element => {
   return (
     // Fundo da página
     <ImageBackground
-      source={require("../assets/background.jpeg")}
+      source={require("../../../assets/background.jpeg")}
       style={Styles.backgroundImage}
     >
       {/* Deixando ela mais escurecida */}
@@ -66,7 +66,7 @@ const Login = (): JSX.Element => {
             {/* Definindo a logo */}
             <View style={Styles.logo}>
               <Image
-                source={require("../assets/izyFilm.png")}
+                source={require("../../../assets/izyFilm.png")}
                 style={{ width: 250, height: 250 }}
               />
             </View>

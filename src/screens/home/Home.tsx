@@ -13,7 +13,7 @@ import Icon from "react-native-vector-icons/AntDesign";
 import IconMaterial from "react-native-vector-icons/MaterialIcons";
 import Styles from "./Styles";
 import { useNavigation } from "@react-navigation/native";
-import ComponentBar from "../components/componentBar/ComponentBar";
+import ComponentBar from "../../components/componentBar/ComponentBar";
 
 // Criando a página home
 const Home = (): JSX.Element => {
