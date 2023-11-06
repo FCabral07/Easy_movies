@@ -6,11 +6,15 @@ import JoinNow from "./src/screens/joinNow/joinNow";
 import CreateAccount from "./src/screens/register/CreateAccount";
 import Home from "./src/screens/home/Home";
 import Profile from "./src/screens/profile/Profile";
+import  { Edit }  from "./src/screens/Edit"
 
 // Código main do app
 const App = (): JSX.Element => {
   //const Stack = createNativeStackNavigator();
   return (
+    <>
+      <Edit />
+    </>
     /*
     <NavigationContainer>
       <Stack.Navigator initialRouteName="JoinNow">
