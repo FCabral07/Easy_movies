@@ -17,9 +17,9 @@ const Styles = StyleSheet.create({
     alignItems: "center",
   },
   heartIcon: {
-    position: "absolute", // Define o ícone do coração como posição absoluta
-    top: -30, // Ajusta a posição vertical para que fique acima do container
-    left: 5, // Ajusta a posição horizontal se necessário
+    position: "absolute",
+    top: -30,
+    left: 5,
     width: 70,
     height: 70,
     borderRadius: 35,
