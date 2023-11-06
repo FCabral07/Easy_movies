@@ -37,7 +37,7 @@ const ComponentBar = () => {
           <Icon
             name="home"
             size={28}
-            color={activeScreen === "Home" ? "#FFFF00" : "#F8F8FF"}
+            color={activeScreen === "Home" ? "#FBC500" : "#D5D5D5"}
           />
         </TouchableOpacity>
       </View>
@@ -47,7 +47,7 @@ const ComponentBar = () => {
           <Icon
             name="search"
             size={28}
-            color={activeScreen === "Search" ? "#FFFF00" : "#F8F8FF"}
+            color={activeScreen === "Search" ? "#FBC500" : "#D5D5D5"}
           />
         </TouchableOpacity>
       </View>
@@ -59,7 +59,7 @@ const ComponentBar = () => {
             <Icon
               name="heart"
               size={28}
-              color={activeScreen === "Favorite" ? "#FFFF00" : "#F8F8FF"}
+              color={activeScreen === "Favorite" ? "#FBC500" : "#D5D5D5"}
             />
           </TouchableOpacity>
         </View>
@@ -70,7 +70,7 @@ const ComponentBar = () => {
           <IconAwesome
             name="fire-alt"
             size={28}
-            color={activeScreen === "Popular" ? "#FFFF00" : "#F8F8FF"}
+            color={activeScreen === "Popular" ? "#FBC500" : "#D5D5D5"}
           />
         </TouchableOpacity>
       </View>
@@ -80,7 +80,7 @@ const ComponentBar = () => {
           <Icon
             name="user"
             size={28}
-            color={activeScreen === "Profile" ? "#FFFF00" : "#F8F8FF"}
+            color={activeScreen === "Profile" ? "#FBC500" : "#D5D5D5"}
           />
         </TouchableOpacity>
       </View>

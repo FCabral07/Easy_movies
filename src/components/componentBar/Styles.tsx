@@ -7,7 +7,7 @@ const Styles = StyleSheet.create({
     width: "100%",
     marginLeft: "0%",
     height: "8%",
-    borderTopColor: "#fff",
+    borderTopColor: "#d5d5d5",
     borderTopWidth: 0.2,
     flexDirection: "row",
   },
@@ -23,11 +23,11 @@ const Styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 35,
-    borderWidth: 2,
+    borderWidth: 3,
     borderColor: "black",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#000",
+    backgroundColor: "#cc0000",
   },
 });
 

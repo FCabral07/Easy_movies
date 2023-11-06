@@ -2,9 +2,10 @@ import { StyleSheet } from "react-native";
 
 const Styles = StyleSheet.create({
   container: {
-    backgroundColor: "#1C1C1C",
+    backgroundColor: "#060d17",
     width: '100%',
-    height: '100%'
+    height: '100%',
+    color: '#d5d5d5',
   },
   arrowBack: {
     marginTop: '20%',
