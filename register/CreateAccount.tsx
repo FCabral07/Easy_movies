@@ -15,7 +15,9 @@ import IconMaterial from "react-native-vector-icons/MaterialIcons";
 import Styles from "./Styles";
 import { useNavigation } from "@react-navigation/native";
 
+// Página de criar conta
 const CreateAccount = (): JSX.Element => {
+  // Constantes de navegação
   const navigation = useNavigation();
 
   const handleIconClick = () => {
@@ -26,19 +28,23 @@ const CreateAccount = (): JSX.Element => {
     navigation.navigate("Login" as never);
   };
   return (
+    // Background
     <ImageBackground
       source={require("../assets/background.jpeg")}
       style={Styles.backgroundImage}
     >
+      {/* Escurecendo e definindo o teclado */}
       <View style={Styles.overlay}>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={Styles.container}
         >
+          {/* Permitindo scrollar */}
           <ScrollView
             contentContainerStyle={Styles.scrollContainer}
             showsHorizontalScrollIndicator={false}
           >
+            {/* Seta de voltar */}
             <View>
               <TouchableOpacity onPress={handleIconClick}>
                 <View style={Styles.arrowBack}>
@@ -51,6 +57,7 @@ const CreateAccount = (): JSX.Element => {
               </TouchableOpacity>
             </View>
 
+            {/* Logo */}
             <View style={Styles.logo}>
               <Image
                 source={require("../assets/izyFilm.png")}
@@ -58,6 +65,7 @@ const CreateAccount = (): JSX.Element => {
               />
             </View>
 
+            {/* Container de input com senha, email e username */}
             <View style={Styles.inputContainer}>
               <View style={Styles.inputWithIcon}>
                 <Icon
@@ -101,6 +109,7 @@ const CreateAccount = (): JSX.Element => {
               </View>
             </View>
 
+            {/* Botão de criar conta */}
             <TouchableOpacity style={Styles.button} onPress={handleCreateAccount}>
               <Text style={Styles.buttonText}>Criar conta</Text>
             </TouchableOpacity>

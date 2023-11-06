@@ -6,6 +6,7 @@ import JoinNow from "./joinNow/joinNow";
 import CreateAccount from "./register/CreateAccount";
 import Home from "./home/Home";
 
+// Código main do app
 const App = (): JSX.Element => {
   const Stack = createNativeStackNavigator();
   return (

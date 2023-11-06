@@ -15,7 +15,9 @@ import IconMaterial from "react-native-vector-icons/MaterialIcons";
 import Styles from "./Styles";
 import { useNavigation } from "@react-navigation/native";
 
+// Criando a página de login
 const Login = (): JSX.Element => {
+  // Definindo as constantes de navegação
   const navigation = useNavigation();
 
   const handleCreateAccount = () => {
@@ -31,11 +33,14 @@ const Login = (): JSX.Element => {
   };
 
   return (
+    // Fundo da página
     <ImageBackground
       source={require("../assets/background.jpeg")}
       style={Styles.backgroundImage}
     >
+      {/* Deixando ela mais escurecida */}
       <View style={Styles.overlay}>
+        {/* Permitindo scrollar e definindo a plataforma */}
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={Styles.container}
@@ -44,6 +49,7 @@ const Login = (): JSX.Element => {
           contentContainerStyle={Styles.scrollContainer}
           showsHorizontalScrollIndicator={false}
           >
+            {/* Criando a seta de voltar */}
             <View>
               <TouchableOpacity onPress={handleIconClick}>
                 <View style={Styles.arrowBack}>
@@ -57,6 +63,7 @@ const Login = (): JSX.Element => {
               </TouchableOpacity>
             </View>
 
+            {/* Definindo a logo */}
             <View style={Styles.logo}>
               <Image
                 source={require("../assets/izyFilm.png")}
@@ -64,6 +71,7 @@ const Login = (): JSX.Element => {
               />
             </View>
 
+            {/* Criando os inputs de login e senha */}
             <View style={Styles.inputContainer}>
               <View style={Styles.inputWithIcon}>
                 <Icon name="user" size={25} color="#FFF0F5" style={Styles.icon} />
@@ -84,6 +92,7 @@ const Login = (): JSX.Element => {
               </View>
             </View>
 
+            {/* Criando os links de criação de conta e esqueceu a senha */}
             <View style={Styles.createAccountForgot}>
               <Text onPress={handleCreateAccount} style={Styles.link}>
                 Não tem uma conta? Crie uma
@@ -93,6 +102,7 @@ const Login = (): JSX.Element => {
               </Text>
             </View>
 
+            {/* Criando o botão de login */}
             <TouchableOpacity style={Styles.button} onPress={handleLoginClick}>
               <Text style={Styles.buttonText}>Entrar</Text>
             </TouchableOpacity>

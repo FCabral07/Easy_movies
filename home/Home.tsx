@@ -15,7 +15,9 @@ import Styles from "./Styles";
 import { useNavigation } from "@react-navigation/native";
 import ComponentBar from "../components/componentBar/ComponentBar";
 
-const Login = (): JSX.Element => {
+// Criando a página home
+const Home = (): JSX.Element => {
+    // Definindo constantes para navegação
   const navigation = useNavigation();
 
   const handleCreateAccount = () => {
@@ -31,11 +33,14 @@ const Login = (): JSX.Element => {
   };
 
   return (
+    // Criando o container
     <View style={Styles.container}>
+        {/* Permitindo scrollar */}
       <ScrollView
         contentContainerStyle={Styles.container}
         showsHorizontalScrollIndicator={false}
       >
+        {/* Criando a seta de voltar no topo da tela */}
         <View>
           <TouchableOpacity onPress={handleIconClick}>
             <View style={Styles.arrowBack}>
@@ -54,4 +59,4 @@ const Login = (): JSX.Element => {
   );
 };
 
-export default Login;
+export default Home;
