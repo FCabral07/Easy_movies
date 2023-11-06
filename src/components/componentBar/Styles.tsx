@@ -19,7 +19,7 @@ const Styles = StyleSheet.create({
   heartIcon: {
     position: "absolute",
     top: -30,
-    left: -35,
+    left: 5,
     width: 70,
     height: 70,
     borderRadius: 35,

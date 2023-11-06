@@ -1,67 +1,86 @@
-import React, { useState } from "react";
-import { TouchableOpacity, View } from "react-native";
-import Styles from "./Styles";
+import React, { useState, useEffect } from "react";
+import { View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import Icon5 from "react-native-vector-icons/FontAwesome5";
-import { useNavigation } from "@react-navigation/native";
+import IconAwesome from "react-native-vector-icons/FontAwesome5";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { useIsFocused } from "@react-navigation/native";
+import Styles from "./Styles";
 
+// Criando a barra de componentes em baixo
 const ComponentBar = () => {
+  // Criando as variáveis de navegação, tela que está ativa, rota ativa
   const navigation = useNavigation();
-  const [activeIcon, setActiveIcon] = React.useState("Home");
-  const [forceUpdate, setForceUpdate] = useState(false);
+  const isFocused = useIsFocused();
+  const route = useRoute();
+  const [activeScreen, setActiveScreen] = useState(route.name);
 
-  const handleIconPress = (iconName) => {
-    setActiveIcon(iconName);
-    setForceUpdate((prev) => !prev);
-    navigation.navigate(iconName as never);
+  // Definindo a rota ativa
+  useEffect(() => {
+    if (isFocused) {
+      setActiveScreen(route.name);
+    }
+  }, [isFocused, route.name]);
+
+  // Definindo a cor do icon e navegação
+  const navigateToScreen = (screenName) => {
+    setActiveScreen(screenName);
+    navigation.navigate(screenName as never);
   };
 
   return (
+    // Criando o container principal do component
     <View style={Styles.fixedContainer}>
+      {/* Container de cada icon */}
       <View style={Styles.iconContainer}>
-        <TouchableOpacity onPress={() => handleIconPress("Home")}>
+        {/* Criando o botão de navegação e o icon */}
+        <TouchableOpacity onPress={() => navigateToScreen("Home")}>
           <Icon
             name="home"
             size={28}
-            color={activeIcon === "Home" ? "#FFFF00" : "#FFF0F5"}
+            color={activeScreen === "Home" ? "#FFFF00" : "#F8F8FF"}
           />
         </TouchableOpacity>
       </View>
+
       <View style={Styles.iconContainer}>
-        <TouchableOpacity onPress={() => handleIconPress("Search")}>
+        <TouchableOpacity onPress={() => navigateToScreen("Search")}>
           <Icon
             name="search"
             size={28}
-            color={activeIcon === "Search" ? "#FFFF00" : "#FFF0F5"}
+            color={activeScreen === "Search" ? "#FFFF00" : "#F8F8FF"}
           />
         </TouchableOpacity>
       </View>
+
+      {/* Botão do meio, onde faço um tratamento para adicionar um círculo ao redor */}
       <View style={Styles.iconContainer}>
-        <TouchableOpacity onPress={() => handleIconPress("Favorite")}>
-          <View style={Styles.heartIcon}>
+        <View style={Styles.heartIcon}>
+          <TouchableOpacity onPress={() => navigateToScreen("Favorite")}>
             <Icon
               name="heart"
               size={28}
-              color={activeIcon === "Favorite" ? "#FFFF00" : "#FFF0F5"}
+              color={activeScreen === "Favorite" ? "#FFFF00" : "#F8F8FF"}
             />
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        </View>
       </View>
+
       <View style={Styles.iconContainer}>
-        <TouchableOpacity onPress={() => handleIconPress("Popular")}>
-          <Icon5
+        <TouchableOpacity onPress={() => navigateToScreen("Popular")}>
+          <IconAwesome
             name="fire-alt"
             size={28}
-            color={activeIcon === "Popular" ? "#FFFF00" : "#FFF0F5"}
+            color={activeScreen === "Popular" ? "#FFFF00" : "#F8F8FF"}
           />
         </TouchableOpacity>
       </View>
+
       <View style={Styles.iconContainer}>
-        <TouchableOpacity onPress={() => handleIconPress("Profile")}>
+        <TouchableOpacity onPress={() => navigateToScreen("Profile")}>
           <Icon
             name="user"
             size={28}
-            color={activeIcon === "Profile" ? "#FFFF00" : "#FFF0F5"}
+            color={activeScreen === "Profile" ? "#FFFF00" : "#F8F8FF"}
           />
         </TouchableOpacity>
       </View>
@@ -69,4 +88,5 @@ const ComponentBar = () => {
   );
 };
 
+// Exportando o componente
 export default ComponentBar;

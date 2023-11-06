@@ -25,7 +25,7 @@ const Home = (): JSX.Element => {
   };
 
   const handleIconClick = () => {
-    navigation.navigate("JoinNow" as never);
+    navigation.navigate("Login" as never);
   };
 
   const handleLoginClick = () => {

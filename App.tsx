@@ -9,9 +9,8 @@ import Profile from "./src/screens/profile/Profile";
 
 // Código main do app
 const App = (): JSX.Element => {
-  //const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator();
   return (
-    /*
     <NavigationContainer>
       <Stack.Navigator initialRouteName="JoinNow">
         <Stack.Screen
@@ -25,7 +24,6 @@ const App = (): JSX.Element => {
         <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
-    */
   );
 };
 
