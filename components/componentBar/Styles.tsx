@@ -8,7 +8,7 @@ const Styles = StyleSheet.create({
     marginLeft: "0%",
     height: "8%",
     borderTopColor: "#fff",
-    borderTopWidth: 1,
+    borderTopWidth: 0.2,
     flexDirection: "row",
   },
   iconContainer: {
@@ -19,7 +19,7 @@ const Styles = StyleSheet.create({
   heartIcon: {
     position: "absolute",
     top: -30,
-    left: 5,
+    left: -35,
     width: 70,
     height: 70,
     borderRadius: 35,

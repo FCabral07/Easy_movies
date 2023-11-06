@@ -1,32 +1,69 @@
-import React from "react";
-import { View } from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity, View } from "react-native";
 import Styles from "./Styles";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Icon5 from "react-native-vector-icons/FontAwesome5";
+import { useNavigation } from "@react-navigation/native";
 
-// Criando o component da navbar que fica em baixo
 const ComponentBar = () => {
+  const navigation = useNavigation();
+  const [activeIcon, setActiveIcon] = React.useState("Home");
+  const [forceUpdate, setForceUpdate] = useState(false);
+
+  const handleIconPress = (iconName) => {
+    setActiveIcon(iconName);
+    setForceUpdate((prev) => !prev);
+    navigation.navigate(iconName as never);
+  };
+
   return (
-    // Criando o container
     <View style={Styles.fixedContainer}>
-        {/* Criando os icons */}
       <View style={Styles.iconContainer}>
-        <Icon name="home" size={28} color="#FFF0F5" />
+        <TouchableOpacity onPress={() => handleIconPress("Home")}>
+          <Icon
+            name="home"
+            size={28}
+            color={activeIcon === "Home" ? "#FFFF00" : "#FFF0F5"}
+          />
+        </TouchableOpacity>
       </View>
       <View style={Styles.iconContainer}>
-        <Icon name="search" size={28} color="#FFF0F5" />
+        <TouchableOpacity onPress={() => handleIconPress("Search")}>
+          <Icon
+            name="search"
+            size={28}
+            color={activeIcon === "Search" ? "#FFFF00" : "#FFF0F5"}
+          />
+        </TouchableOpacity>
       </View>
       <View style={Styles.iconContainer}>
-        {/* Criando os favoritos, que ficam centralizados */}
-        <View style={Styles.heartIcon}>
-          <Icon name="heart" size={28} color="#FFF0F5" />
-        </View>
+        <TouchableOpacity onPress={() => handleIconPress("Favorite")}>
+          <View style={Styles.heartIcon}>
+            <Icon
+              name="heart"
+              size={28}
+              color={activeIcon === "Favorite" ? "#FFFF00" : "#FFF0F5"}
+            />
+          </View>
+        </TouchableOpacity>
       </View>
       <View style={Styles.iconContainer}>
-        <Icon5 name="fire-alt" size={28} color="#FFF0F5" />
+        <TouchableOpacity onPress={() => handleIconPress("Popular")}>
+          <Icon5
+            name="fire-alt"
+            size={28}
+            color={activeIcon === "Popular" ? "#FFFF00" : "#FFF0F5"}
+          />
+        </TouchableOpacity>
       </View>
       <View style={Styles.iconContainer}>
-        <Icon name="user" size={28} color="#FFF0F5" />
+        <TouchableOpacity onPress={() => handleIconPress("Profile")}>
+          <Icon
+            name="user"
+            size={28}
+            color={activeIcon === "Profile" ? "#FFFF00" : "#FFF0F5"}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
