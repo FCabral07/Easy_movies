@@ -14,10 +14,11 @@ import IconMaterial from "react-native-vector-icons/MaterialIcons";
 import Styles from "./Styles";
 import { useNavigation } from "@react-navigation/native";
 import ComponentBar from "../../components/componentBar/ComponentBar";
+import ComponentUpBar from "../../components/componentUpBar/ComponentUpBar";
 
 // Criando a página home
 const Home = (): JSX.Element => {
-    // Definindo constantes para navegação
+  // Definindo constantes para navegação
   const navigation = useNavigation();
 
   const handleCreateAccount = () => {
@@ -35,13 +36,15 @@ const Home = (): JSX.Element => {
   return (
     // Criando o container
     <View style={Styles.container}>
-        {/* Permitindo scrollar */}
+      <ComponentUpBar />
+      {/* Permitindo scrollar */}
       <ScrollView
         contentContainerStyle={Styles.container}
-        showsHorizontalScrollIndicator={false}
+        indicatorStyle="white"
+        style={{ zIndex: 0 }}
       >
         {/* Criando a seta de voltar no topo da tela */}
-        <View>
+        {/* <View>
           <TouchableOpacity onPress={handleIconClick}>
             <View style={Styles.arrowBack}>
               <IconMaterial
@@ -52,7 +55,7 @@ const Home = (): JSX.Element => {
               />
             </View>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ScrollView>
       <ComponentBar />
     </View>
