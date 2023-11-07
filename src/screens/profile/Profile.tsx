@@ -1,19 +1,10 @@
 import React from "react";
-import {
-  ScrollView,
-  Text,
-  TextInput,
-  View,
-  Image,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
-import Icon from "react-native-vector-icons/AntDesign";
-import IconMaterial from "react-native-vector-icons/MaterialIcons";
-import Styles from "./Styles";
+import { StyleSheet } from "react-native"
+import perfil from "../../../assets/perfil.png"
 import { useNavigation } from "@react-navigation/native";
+import { LinearGradient } from 'expo-linear-gradient';
 import ComponentBar from "../../components/componentBar/ComponentBar";
+import * as S from './Styles'
 
 // Criando a página home
 const Profile = (): JSX.Element => {
@@ -33,34 +24,58 @@ const Profile = (): JSX.Element => {
   };
 
   return (
-    // Criando o container
-    <View style={Styles.container}>
-      {/* Permitindo scrollar */}
-      <ScrollView
-        contentContainerStyle={Styles.container}
-        showsHorizontalScrollIndicator={false}
-      >
-        {/* Criando a seta de voltar no topo da tela */}
-        <View>
-          <TouchableOpacity onPress={handleIconClick}>
-            <View style={Styles.arrowBack}>
-              <IconMaterial
-                name="arrow-back-ios"
-                size={25}
-                color="#F5F5F5"
-                style={Styles.icon}
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        <View>
-            <Text>Teste</Text>
-        </View>
-      </ScrollView>
-      <ComponentBar />
-    </View>
+    <LinearGradient
+            // Background Linear Gradient
+            colors={['#010103', '#2f405a']}
+            style={styles.linearGradient}
+        >
+            <S.ContainerPerfil>
+                <S.ContainerImage>
+                    <S.Image source={perfil} />
+                </S.ContainerImage>
+                <S.TextName>Weslley</S.TextName>
+            </S.ContainerPerfil>
+            <S.ContainerButton>
+                <S.ContainerButtonEdit>
+                    <S.TextName>
+                        Editar perfil
+                    </S.TextName>
+                </S.ContainerButtonEdit>
+            </S.ContainerButton>
+            <S.ContainerInfo>
+                <S.TextNameBold>Minhas informações</S.TextNameBold>
+                <S.Line></S.Line>
+            </S.ContainerInfo>
+            <S.ContainerUserData>
+                <S.ItalicText>
+                    <S.TextNameBold>Nome:</S.TextNameBold> Weslley
+                </S.ItalicText>
+                <S.ItalicText>
+                    <S.TextNameBold>Email:</S.TextNameBold> Weslley@email.com
+                </S.ItalicText>
+                <S.ItalicText>
+                    <S.TextNameBold>Senha:</S.TextNameBold> ****
+                </S.ItalicText>
+                <S.ContainerButton>
+                    <S.ContainerButtonEdit onPress={handleLoginClick}>
+                        <S.TextName>
+                            Sair
+                        </S.TextName>
+                    </S.ContainerButtonEdit>
+                </S.ContainerButton>
+            </S.ContainerUserData>
+            <ComponentBar />
+        </LinearGradient>
   );
 };
+
+var styles = StyleSheet.create({
+  linearGradient: {
+      flex: 1,
+      paddingLeft: 15,
+      paddingRight: 15,
+      borderRadius: 5
+  }
+});
 
 export default Profile;
