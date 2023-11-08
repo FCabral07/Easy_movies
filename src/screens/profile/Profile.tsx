@@ -37,9 +37,9 @@ const Profile = (): JSX.Element => {
             </S.ContainerPerfil>
             <S.ContainerButton>
                 <S.ContainerButtonEdit>
-                    <S.TextName>
+                    <S.TextNameBold>
                         Editar perfil
-                    </S.TextName>
+                    </S.TextNameBold>
                 </S.ContainerButtonEdit>
             </S.ContainerButton>
             <S.ContainerInfo>
@@ -56,13 +56,13 @@ const Profile = (): JSX.Element => {
                 <S.ItalicText>
                     <S.TextNameBold>Senha:</S.TextNameBold> ****
                 </S.ItalicText>
-                <S.ContainerButton>
-                    <S.ContainerButtonEdit onPress={handleLoginClick}>
-                        <S.TextName>
+                <S.ContainerButtonExit>
+                    <S.ButtonExit onPress={handleLoginClick}>
+                        <S.TextNameBold>
                             Sair
-                        </S.TextName>
-                    </S.ContainerButtonEdit>
-                </S.ContainerButton>
+                        </S.TextNameBold>
+                    </S.ButtonExit>
+                </S.ContainerButtonExit>
             </S.ContainerUserData>
             <ComponentBar />
         </LinearGradient>

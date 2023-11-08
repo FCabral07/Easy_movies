@@ -37,8 +37,8 @@ export const ContainerButton = styled.View`
 
 export const ContainerButtonEdit = styled.TouchableOpacity`
     background-color: #413e48;
-    width: 30%;
-    height: 40px;
+    width: 35%;
+    height: 50px;
     align-items: center;
     justify-content: center;
     border-radius: 4px;
@@ -66,6 +66,21 @@ export const ItalicText = styled.Text`
     color: #f0f0f0;
 `
 export const ContainerUserData = styled.View`
+    flex: 1;
     margin-top: 20px;
     gap: 10px;
+`
+
+export const ContainerButtonExit = styled.View`
+    margin-top: 170px; 
+    align-items: center;
+    justify-content: center;
+`
+export const ButtonExit = styled.TouchableOpacity`
+    background-color: #413e48;
+    width: 35%;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
 `

@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const Styles = StyleSheet.create({
   fixedContainer: {
-    position: "relative",
+    position: "absolute",
     marginBottom: "4%",
     width: "100%",
     marginLeft: "0%",
@@ -10,6 +10,9 @@ const Styles = StyleSheet.create({
     borderTopColor: "#fff",
     borderTopWidth: 0.2,
     flexDirection: "row",
+    alignItems: "center",
+    bottom: 0,
+    left: 15,
   },
   iconContainer: {
     marginTop: "4%",
