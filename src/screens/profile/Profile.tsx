@@ -2,33 +2,28 @@ import React from "react";
 import { StyleSheet } from "react-native"
 import perfil from "../../../assets/perfil.png"
 import { useNavigation } from "@react-navigation/native";
-import { LinearGradient } from 'expo-linear-gradient';
 import ComponentBar from "../../components/componentBar/ComponentBar";
 import * as S from './Styles'
 
 // Criando a página home
 const Profile = (): JSX.Element => {
-  // Definindo constantes para navegação
-  const navigation = useNavigation();
+    // Definindo constantes para navegação
+    const navigation = useNavigation();
 
-  const handleCreateAccount = () => {
-    navigation.navigate("CreateAccount" as never);
-  };
+    const handleEditAccount = () => {
+        navigation.navigate("Edit" as never);
+    };
 
-  const handleIconClick = () => {
-    navigation.navigate("JoinNow" as never);
-  };
+    const handleIconClick = () => {
+        navigation.navigate("JoinNow" as never);
+    };
 
-  const handleLoginClick = () => {
-    navigation.navigate("Home" as never);
-  };
+    const handleLoginClick = () => {
+        navigation.navigate("Home" as never);
+    };
 
-  return (
-    <LinearGradient
-            // Background Linear Gradient
-            colors={['#010103', '#2f405a']}
-            style={styles.linearGradient}
-        >
+    return (
+        <S.Container>
             <S.ContainerPerfil>
                 <S.ContainerImage>
                     <S.Image source={perfil} />
@@ -37,7 +32,7 @@ const Profile = (): JSX.Element => {
             </S.ContainerPerfil>
             <S.ContainerButton>
                 <S.ContainerButtonEdit>
-                    <S.TextNameBold>
+                    <S.TextNameBold onPress={handleEditAccount}>
                         Editar perfil
                     </S.TextNameBold>
                 </S.ContainerButtonEdit>
@@ -65,17 +60,8 @@ const Profile = (): JSX.Element => {
                 </S.ContainerButtonExit>
             </S.ContainerUserData>
             <ComponentBar />
-        </LinearGradient>
-  );
+        </S.Container>
+    );
 };
-
-var styles = StyleSheet.create({
-  linearGradient: {
-      flex: 1,
-      paddingLeft: 15,
-      paddingRight: 15,
-      borderRadius: 5
-  }
-});
 
 export default Profile;

@@ -5,6 +5,7 @@ export const Container = styled.View`
     flex: 1;
     padding-left: 15px;
     padding-right: 15px;
+    background-color: #000000;
 `
 export const ContainerPerfil = styled.View`
     margin-top: 100px;
@@ -24,25 +25,20 @@ export const Image = styled.Image`
     width: 100px;
     height: 100px;
 `
-
+export const ContainerCamera = styled.TouchableOpacity`
+background-color: #F7C710;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 100px;
+`
 export const TextName = styled.Text`
     color: #f0f0f0;
     font-size: 18px;
-`
-export const ContainerButton = styled.View`
-    margin-top: 80px; 
-    align-items: center;
-    justify-content: center;
-`
-
-export const ContainerButtonEdit = styled.TouchableOpacity`
-    background-color: #413e48;
-    width: 35%;
-    height: 50px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-
 `
 export const TextNameBold = styled.Text`
     color: #f0f0f0;
@@ -60,17 +56,27 @@ export const ContainerInfo = styled.View`
     align-items: center;
     gap: 10px;
 `
-export const ItalicText = styled.Text`
-    font-size: 14px;
-    font-style: italic;
-    color: #f0f0f0;
-`
+
 export const ContainerUserData = styled.View`
     flex: 1;
     margin-top: 20px;
     gap: 10px;
 `
-
+export const ContainerInput = styled.View`
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+`
+export const ContainerInputBox = styled.TextInput`
+    background-color: #413e48 ;
+    width: 80%;
+    height: 30px;
+    border-radius: 8px;
+    padding-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+`
 export const ContainerButtonExit = styled.View`
     margin-top: 170px; 
     align-items: center;
