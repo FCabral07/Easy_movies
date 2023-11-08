@@ -1,40 +1,33 @@
 import { Card } from "@rneui/base";
 import React from "react";
-import {
-  ScrollView,
-  View
-} from "react-native";
+import { ScrollView, View } from "react-native";
 import ComponentUpBar from "../componentUpBar/ComponentUpBar";
 import Styles from "../popularCards/Styles";
 
-const PopularCards = (): JSX.Element => {
+const MovieCard = ({ image }) => {
+  return (
+    <View style={Styles.cardContainer}>
+      <Card containerStyle={{ backgroundColor: "#060d17", borderWidth: 0 }}>
+        <Card.Image
+          source={{ uri: image }}
+          style={Styles.cardImage}
+          resizeMode="cover"
+        />
+      </Card>
+    </View>
+  );
+};
 
-  const movies = [
-    { name: "Teste1", genre: "teste", image: "https://www.atoupeira.com.br/wp-content/uploads/2023/05/oppenheimer-novo-poster.jpg"},
-    { name: "Teste2", genre: "teste", image: "https://m.media-amazon.com/images/M/MV5BMzQxNzQzOTQwM15BMl5BanBnXkFtZTgwMDQ2NTcwODM@._V1_.jpg" },
-    { name: "Teste3", genre: "teste", image: "https://example.com/image3.jpg" },
-    { name: "Teste4", genre: "teste", image: "https://example.com/image4.jpg" },
-  ];
-
+const PopularCards = ({ movies }) => {
   return (
     <View>
-      <ComponentUpBar/>
+      {/* <ComponentUpBar /> */}
       <ScrollView>
-        <View >
+        <View>
           <ScrollView horizontal>
-            {movies.map((movie, i) => {
-              return (
-                <View key={i} style={Styles.cardContainer}>
-                  <Card containerStyle={{backgroundColor: '#060d17', borderWidth: 0}}>
-                    <Card.Image
-                      source={{ uri: movie.image }}
-                      style={Styles.cardImage} // Aplicar estilo para a imagem
-                      resizeMode="cover"
-                    />
-                  </Card>
-                </View>
-              );
-            })}
+            {movies.map((movie, i) => (
+              <MovieCard key={i} image={movie.image} />
+            ))}
           </ScrollView>
         </View>
       </ScrollView>
