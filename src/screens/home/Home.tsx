@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import {
@@ -15,11 +15,11 @@ import Styles from "./Styles";
 // Criando a página home
 const Home = (): JSX.Element => {
   // Definindo constantes para navegação
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
-  const handleLoginClick = () => {
-    navigation.navigate("Home" as never);
-  };
+  // const handleLoginClick = () => {
+  //   navigation.navigate("Home" as never);
+  // };
 
   return (
     // Criando o container

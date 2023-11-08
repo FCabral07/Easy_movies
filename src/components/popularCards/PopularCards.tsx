@@ -25,10 +25,11 @@ const PopularCards = (): JSX.Element => {
             {movies.map((movie, i) => {
               return (
                 <View key={i} style={Styles.cardContainer}>
-                  <Card>
+                  <Card containerStyle={{backgroundColor: '#060d17', borderWidth: 0}}>
                     <Card.Image
                       source={{ uri: movie.image }}
                       style={Styles.cardImage} // Aplicar estilo para a imagem
+                      resizeMode="cover"
                     />
                   </Card>
                 </View>

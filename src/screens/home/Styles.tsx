@@ -55,8 +55,6 @@ const Styles = StyleSheet.create({
   films: {
     height: "10%",
     marginTop: "10%",
-    borderColor: "#fff000",
-    borderWidth: 1,
     backgroundColor: "#transparent",
   },
   top10: {
