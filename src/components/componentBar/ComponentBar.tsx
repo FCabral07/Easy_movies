@@ -59,7 +59,7 @@ const ComponentBar = () => {
             <Icon
               name="heart"
               size={28}
-              color={activeScreen === "Favorite" ? "#060d17" : "#8c8c8c"}
+              color={activeScreen === "Favorite" ? "#FBC500" : "#8c8c8c"}
             />
           </TouchableOpacity>
         </View>

@@ -67,7 +67,7 @@ const Login = (): JSX.Element => {
             <View style={Styles.logo}>
               <Image
                 source={require("../../../assets/izyFilm.png")}
-                style={{ width: 250, height: 250 }}
+                style={{ width: 300, height: 300 }}
               />
             </View>
 
