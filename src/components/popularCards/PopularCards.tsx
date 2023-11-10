@@ -1,7 +1,6 @@
 import { Card } from "@rneui/base";
 import React from "react";
 import { ScrollView, View } from "react-native";
-import ComponentUpBar from "../componentUpBar/ComponentUpBar";
 import Styles from "../popularCards/Styles";
 
 const MovieCard = ({ image }) => {
@@ -21,7 +20,6 @@ const MovieCard = ({ image }) => {
 const PopularCards = ({ movies }) => {
   return (
     <View>
-      {/* <ComponentUpBar /> */}
       <ScrollView>
         <View>
           <ScrollView horizontal>

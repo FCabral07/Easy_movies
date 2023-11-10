@@ -11,14 +11,12 @@ const Styles = StyleSheet.create({
     height: "14%",
     backgroundColor: "#transparent",
     borderRadius: 20,
-    // overflow: "hidden",
   },
   imageFocus: {
     flex: 1,
     resizeMode: 'contain',
   },
   linearGradient: {
-    // marginTop: 'auto',
     justifyContent: 'center',
     flex: 1,
   },
@@ -58,14 +56,26 @@ const Styles = StyleSheet.create({
     backgroundColor: "#transparent",
   },
   top10: {
-    height: "24%",
+    height: "22%",
     marginTop: "10%",
-    borderColor: "#ff1000",
-    borderWidth: 1,
     backgroundColor: "#transparent",
   },
   newFilm: {
     height: "12%",
+  },
+  top10text:{
+    height: '5%',
+  },
+  rowMovies: {
+    width: 390,
+    height: 580,
+    justifyContent: 'center',
+    marginLeft: 18,
+    marginTop: 35
+  },
+  top10movies:{
+    flexDirection: "column",
+    marginLeft: '5%'
   },
   text: {
     color: "#fff",
