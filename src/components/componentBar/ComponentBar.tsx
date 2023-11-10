@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
-import { useNavigation, useRoute } from "@react-navigation/native";
-import { useIsFocused } from "@react-navigation/native";
+import { useNavigation, useRoute, useIsFocused } from "@react-navigation/native";
 import Styles from "./Styles";
 
 // Criando a barra de componentes em baixo
@@ -59,7 +58,7 @@ const ComponentBar = () => {
             <Icon
               name="heart"
               size={28}
-              color={activeScreen === "Favorite" ? "#060d17" : "#8c8c8c"}
+              color={activeScreen === "Favorite" ? "#FBC500" : "#8c8c8c"}
             />
           </TouchableOpacity>
         </View>

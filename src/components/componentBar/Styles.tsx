@@ -8,7 +8,7 @@ const Styles = StyleSheet.create({
     marginLeft: "0%",
     height: "6%",
     flexDirection: "row",
-    zIndex: 1,
+    backgroundColor: '#060d17'
   },
   iconContainer: {
     marginTop: "4%",
@@ -23,10 +23,10 @@ const Styles = StyleSheet.create({
     height: 70,
     borderRadius: 35,
     borderWidth: 3,
-    borderColor: "black",
+    borderColor: "#dbdbcc",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fbc500",
+    backgroundColor: "#fff",
   },
 });
 

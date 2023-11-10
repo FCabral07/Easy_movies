@@ -5,18 +5,19 @@ const Styles = StyleSheet.create({
     position: "absolute",
     marginTop: "0%",
     width: "100%",
-    height: "4%",
+    height: "6%",
     flexDirection: "row",
     zIndex: 1,
+    backgroundColor: '#060d17'
   },
   iconContainer: {
     marginLeft: 85,
-    marginTop: 65,
+    marginTop: 70,
   },
   appName: {
     marginLeft: '31%',
     color:'#FBC500',
-    marginTop: 55,
+    marginTop: 60,
     fontSize: 30,
   }
 });
