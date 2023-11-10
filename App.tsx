@@ -6,6 +6,7 @@ import JoinNow from "./src/screens/joinNow/joinNow";
 import CreateAccount from "./src/screens/register/CreateAccount";
 import Home from "./src/screens/home/Home";
 import Profile from "./src/screens/profile/Profile";
+import PopularMovies from "./src/screens/popularMovies/PopularMovies";
 
 // Código main do app
 const App = (): JSX.Element => {
@@ -18,10 +19,31 @@ const App = (): JSX.Element => {
           component={JoinNow}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-        <Stack.Screen name="CreateAccount" component={CreateAccount} options={{ headerShown: false }} />
-        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-        <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CreateAccount"
+          component={CreateAccount}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PopularMovies"
+          component={PopularMovies}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
