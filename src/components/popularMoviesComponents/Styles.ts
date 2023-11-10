@@ -1,16 +1,12 @@
-// components/popularMoviesComponents/Styles.tsx
+// components/popularMoviesComponents/Styles.jsx
 import { StyleSheet } from "react-native";
 
 const filterModalStyles = StyleSheet.create({
   modalContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  modalContent: {
     backgroundColor: "#fff",
     padding: 20,
+    marginVertical: 50,
+    marginHorizontal: 60,
     borderRadius: 10,
     elevation: 5,
   },
@@ -35,25 +31,21 @@ const popularMoviesStyles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 10,
     paddingTop: 60,
-    backgroundColor: "#060d17", // Cor de fundo
   },
   card: {
-    width: "30%", // Exibe 3 filmes por linha
+    width: "42%",
     borderRadius: 8,
     overflow: "hidden",
     marginBottom: 20,
     elevation: 4,
-    backgroundColor: "#333", // Cor de fundo do card
   },
   image: {
     height: 200,
-    resizeMode: "cover", // Ajusta a imagem dentro do container
   },
   title: {
     fontSize: 16,
     fontWeight: "bold",
     margin: 10,
-    color: "#FBC500", // Cor do título
   },
   genre: {
     fontSize: 14,
