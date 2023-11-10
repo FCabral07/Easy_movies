@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
-import { useNavigation, useRoute, useIsFocused } from "@react-navigation/native";
+import {
+  useNavigation,
+  useRoute,
+  useIsFocused,
+} from "@react-navigation/native";
 import Styles from "./Styles";
 
 // Criando a barra de componentes em baixo
@@ -65,11 +69,11 @@ const ComponentBar = () => {
       </View>
 
       <View style={Styles.iconContainer}>
-        <TouchableOpacity onPress={() => navigateToScreen("Popular")}>
+        <TouchableOpacity onPress={() => navigateToScreen("PopularMovies")}>
           <IconAwesome
             name="fire-alt"
             size={26}
-            color={activeScreen === "Popular" ? "#FBC500" : "#8c8c8c"}
+            color={activeScreen === "PopularMovies" ? "#FBC500" : "#8c8c8c"}
           />
         </TouchableOpacity>
       </View>
