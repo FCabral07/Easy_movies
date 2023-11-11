@@ -6,9 +6,9 @@ const Styles = StyleSheet.create({
     marginTop: "196%",
     width: "100%",
     marginLeft: "0%",
-    height: "6%",
+    height: "10%",
     flexDirection: "row",
-    backgroundColor: '#060d17'
+    backgroundColor: "#060d17",
   },
   iconContainer: {
     marginTop: "4%",
