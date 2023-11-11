@@ -31,8 +31,8 @@ const Profile = (): JSX.Element => {
                 <S.TextName>Weslley</S.TextName>
             </S.ContainerPerfil>
             <S.ContainerButton>
-                <S.ContainerButtonEdit>
-                    <S.TextNameBold onPress={handleEditAccount}>
+                <S.ContainerButtonEdit onPress={handleEditAccount}>
+                    <S.TextNameBold >
                         Editar perfil
                     </S.TextNameBold>
                 </S.ContainerButtonEdit>
