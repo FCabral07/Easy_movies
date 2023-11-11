@@ -33,20 +33,17 @@ const popularMoviesStyles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 10,
     paddingTop: 60,
-    marginLeft: "5%", // Adicionado margem à esquerda para centralizar
   },
   card: {
-    width: "80%", // Alterado para 48% para acomodar dois cards por linha
-    //height: "50%",
-    borderRadius: 5,
+    width: "90%",
+    borderRadius: 8,
     overflow: "hidden",
-    height: "80%",
-    //marginBottom: 20,
-    //elevation: 4,
+    marginBottom: 20,
+    elevation: 4,
   },
   image: {
-    height: "60%", // Alterado para 60% para preencher mais a altura
-    width: "100%", // Alterado para 100% para preencher a largura do container
+    height: 240,
+    width: 140,
   },
   title: {
     fontSize: 16,
