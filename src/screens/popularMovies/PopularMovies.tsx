@@ -23,19 +23,19 @@ const PopularMovies: React.FC = () => {
     {
       id: 1,
       title: "Five Nights at Freddy's",
-      genre: "Comédia",
+      genre: "Terror/Comédia",
       image: "https://image.tmdb.org/t/p/w500/j9mH1pr3IahtraTWxVEMANmPSGR.jpg",
     },
     {
       id: 2,
       title: "Muzzle",
-      genre: "Comédia",
+      genre: "Drama/Aventura",
       image: "https://image.tmdb.org/t/p/w500/qXChf7MFL36BgoLkiB3BzXiwW82.jpg",
     },
     {
       id: 3,
       title: "The Marvels",
-      genre: "Comédia",
+      genre: "Aventura/Comédia",
       image: "https://image.tmdb.org/t/p/w500/tUtgLOESpCx7ue4BaeCTqp3vn1b.jpg",
     },
     {
@@ -50,41 +50,63 @@ const PopularMovies: React.FC = () => {
       genre: "Terror",
       image: "https://image.tmdb.org/t/p/w500/qVKirUdmoex8SdfUk8WDDWwrcCh.jpg",
     },
+    {
+      id: 6,
+      title: "Sound of Freedom",
+      genre: "Drama",
+      image: "https://image.tmdb.org/t/p/w500/qA5kPYZA7FkVvqcEfJRoOy4kpHg.jpg",
+    },
+    {
+      id: 7,
+      title: "Boudica",
+      genre: "Ação",
+      image: "https://image.tmdb.org/t/p/w500/ssEFC5wfFjj7lJpUgwJDOK1Xu1J.jpg",
+    },
+    {
+      id: 8,
+      title: "Fast X",
+      genre: "Ação",
+      image: "https://image.tmdb.org/t/p/w500/fiVW06jE7z9YnO4trhaMEdclSiC.jpg",
+    },
+    {
+      id: 9,
+      title: "The Equalizer 3",
+      genre: "Ação",
+      image: "https://image.tmdb.org/t/p/w500/b0Ej6fnXAP8fK75hlyi2jKqdhHz.jpg",
+    },
+    {
+      id: 10,
+      title: "Saw X",
+      genre: "Terror",
+      image: "https://image.tmdb.org/t/p/w500/aQPeznSu7XDTrrdCtT5eLiu52Yu.jpg",
+    },
   ];
 
   return (
     <View style={Styles.container}>
-      <View style={Styles.header}>
-        <Text style={Styles.title}>Filmes Populares</Text>
-      </View>
-      <View>
-        <TouchableOpacity onPress={handleIconClick}>
-          <View style={Styles.arrowBack}>
-            <IconMaterial
-              name="arrow-back-ios"
-              size={25}
-              color="#F5F5F5"
-              style={Styles.icon}
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <ScrollView>
-        {/* Utilizando MovieList com os dados de exemplo */}
-        <MovieList movies={movies} />
-      </ScrollView>
-
-      <TouchableOpacity
-        style={Styles.filterButton}
-        onPress={() => setShowFilterOptions(true)}
+      <ScrollView
+        contentContainerStyle={Styles.container}
+        indicatorStyle="white"
+        style={{ zIndex: 0 }}
       >
-        <Ionicons name="ios-filter" size={24} color="white" />
-      </TouchableOpacity>
+        <View style={Styles.header}>
+          <Text style={Styles.title}>Filmes Populares</Text>
+        </View>
+        <TouchableOpacity
+          style={Styles.filterButton}
+          onPress={() => setShowFilterOptions(true)}
+        >
+          <Ionicons name="ios-filter" size={24} color="white" />
+        </TouchableOpacity>
+        <View>
+          <MovieList movies={movies} />
+        </View>
 
-      <FilterModal
-        isVisible={showFilterOptions}
-        onClose={() => setShowFilterOptions(false)}
-      />
+        <FilterModal
+          isVisible={showFilterOptions}
+          onClose={() => setShowFilterOptions(false)}
+        />
+      </ScrollView>
       <ComponentBar />
     </View>
   );

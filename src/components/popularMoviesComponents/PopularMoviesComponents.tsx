@@ -1,8 +1,7 @@
 // PopularMoviesComponents.tsx
 import React from "react";
 import { View, Text, Image } from "react-native";
-import { Card } from "react-native-elements";
-import { popularMoviesStyles as styles } from "./Styles";
+import { popularMoviesStyles as Styles } from "./Styles";
 
 interface Movie {
   id: number;
@@ -17,15 +16,13 @@ interface MovieCardProps {
   image: string;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ title, genre, image }) => {
-  return (
-    <Card containerStyle={styles.card}>
-      <Image source={{ uri: image }} style={styles.image} />
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.genre}>{genre}</Text>
-    </Card>
-  );
-};
+const MovieCard: React.FC<MovieCardProps> = ({ title, genre, image }) => (
+  <View style={Styles.card}>
+    <Image source={{ uri: image }} style={Styles.image} />
+    <Text style={Styles.title}>{title}</Text>
+    <Text style={Styles.genre}>{genre}</Text>
+  </View>
+);
 
 interface MovieListProps {
   movies: Movie[];
@@ -33,7 +30,7 @@ interface MovieListProps {
 
 const MovieList: React.FC<MovieListProps> = ({ movies }) => {
   return (
-    <View style={styles.container}>
+    <View style={Styles.container}>
       {movies.map((movie) => (
         <MovieCard
           key={movie.id}

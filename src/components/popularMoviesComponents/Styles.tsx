@@ -5,10 +5,10 @@ const filterModalStyles = StyleSheet.create({
   // Container que abre quando clicar no botão do filtro
   modalContainer: {
     backgroundColor: "#fff",
-    padding: 20,
+    padding: 30,
     marginVertical: 50,
     marginHorizontal: 60,
-    borderRadius: 10,
+    borderRadius: 20,
     elevation: 5,
   },
   //Texto "Filtrar por" dentro container
@@ -29,32 +29,37 @@ const filterModalStyles = StyleSheet.create({
 const popularMoviesStyles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    flexWrap: "wrap",
     justifyContent: "space-between",
-    paddingHorizontal: 10,
-    paddingTop: 60,
+    flexWrap: "wrap",
+    marginTop: "2%",
   },
   card: {
-    width: "90%",
-    borderRadius: 8,
-    overflow: "hidden",
-    marginBottom: 20,
-    elevation: 4,
+    width: 195,
+    height: 400,
+    padding: 50,
+    marginBottom: "4%",
+    paddingHorizontal: 0,
+    paddingTop: 20,
+    marginHorizontal: 1,
   },
   image: {
-    height: 240,
-    width: 140,
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+    borderRadius: 5,
   },
   title: {
-    fontSize: 16,
+    textAlign: "center",
+    marginTop: "1%",
+    color: "#FFFAFA",
+    fontSize: 17,
     fontWeight: "bold",
-    margin: 10,
   },
   genre: {
+    textAlign: "center",
+    marginTop: "1%",
+    color: "#FFFAFA",
     fontSize: 16,
-    marginHorizontal: 10,
-    marginBottom: 10,
-    color: "#888",
   },
 });
 
