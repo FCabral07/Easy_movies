@@ -65,11 +65,11 @@ const ComponentBar = () => {
       </View>
 
       <View style={Styles.iconContainer}>
-        <TouchableOpacity onPress={() => navigateToScreen("Popular")}>
+        <TouchableOpacity onPress={() => navigateToScreen("PopularMovies")}>
           <IconAwesome
             name="fire-alt"
             size={26}
-            color={activeScreen === "Popular" ? "#FBC500" : "#8c8c8c"}
+            color={activeScreen === "PopularMovies" ? "#FBC500" : "#8c8c8c"}
           />
         </TouchableOpacity>
       </View>

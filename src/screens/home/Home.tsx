@@ -9,6 +9,7 @@ import {
   View,
 } from "react-native";
 import ComponentBar from "../../components/componentBar/ComponentBar";
+import ComponentUpBar from "../../components/componentUpBar/ComponentUpBar";
 import PopularCards from "../../components/popularCards/PopularCards";
 import Top10Views from "../../components/top10Cards/Top10Cards";
 import Styles from "./Styles";
@@ -28,6 +29,7 @@ const Home = (): JSX.Element => {
       {/* <View style={Styles.Navbar}>
 
       </View> */}
+      <ComponentUpBar />
       {/* Permitindo scrollar */}
       <ScrollView
         contentContainerStyle={Styles.container}
