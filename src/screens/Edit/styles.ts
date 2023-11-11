@@ -5,7 +5,7 @@ export const Container = styled.View`
     flex: 1;
     padding-left: 15px;
     padding-right: 15px;
-    background-color: #000000;
+    background-color: #060d17;
 `
 export const ContainerPerfil = styled.View`
     margin-top: 100px;

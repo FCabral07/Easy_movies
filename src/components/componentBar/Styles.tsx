@@ -3,16 +3,12 @@ import { StyleSheet } from "react-native";
 const Styles = StyleSheet.create({
   fixedContainer: {
     position: "absolute",
-    marginBottom: "4%",
+    marginTop: "196%",
     width: "100%",
     marginLeft: "0%",
-    height: "8%",
-    borderTopColor: "#fff",
-    borderTopWidth: 0.2,
+    height: "6%",
     flexDirection: "row",
-    alignItems: "center",
-    bottom: 0,
-    left: 15,
+    backgroundColor: '#060d17'
   },
   iconContainer: {
     marginTop: "4%",
@@ -22,16 +18,17 @@ const Styles = StyleSheet.create({
   heartIcon: {
     position: "absolute",
     top: -30,
-    left: -35,
+    left: 5,
     width: 70,
     height: 70,
     borderRadius: 35,
-    borderWidth: 2,
-    borderColor: "black",
+    borderWidth: 3,
+    borderColor: "#dbdbcc",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#000",
+    backgroundColor: "#fff",
   },
 });
+
 
 export default Styles;

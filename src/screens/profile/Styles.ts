@@ -1,11 +1,12 @@
 import styled from "styled-components/native"
+import ComponentBar from "../../components/componentBar/ComponentBar";
 
 
 export const Container = styled.View`
     flex: 1;
     padding-left: 15px;
     padding-right: 15px;
-    background-color: #000000;
+    background-color: #060d17;
 `
 export const ContainerPerfil = styled.View`
     margin-top: 100px;
@@ -73,7 +74,7 @@ export const ContainerUserData = styled.View`
 `
 
 export const ContainerButtonExit = styled.View`
-    margin-top: 170px; 
+    margin-top: 150px; 
     align-items: center;
     justify-content: center;
 `
