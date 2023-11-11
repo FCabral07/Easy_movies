@@ -22,23 +22,34 @@ const PopularMovies: React.FC = () => {
   const movies = [
     {
       id: 1,
-      title: "Filme 1",
-      genre: "Ação",
-      image: "https://via.placeholder.com/300",
+      title: "Five Nights at Freddy's",
+      genre: "Comédia",
+      image: "https://image.tmdb.org/t/p/w500/j9mH1pr3IahtraTWxVEMANmPSGR.jpg",
     },
     {
       id: 2,
-      title: "Filme 2",
+      title: "Muzzle",
       genre: "Comédia",
-      image: "https://via.placeholder.com/300",
+      image: "https://image.tmdb.org/t/p/w500/qXChf7MFL36BgoLkiB3BzXiwW82.jpg",
     },
     {
       id: 3,
-      title: "Filme 3",
-      genre: "Terror",
-      image: "https://via.placeholder.com/300",
+      title: "The Marvels",
+      genre: "Comédia",
+      image: "https://image.tmdb.org/t/p/w500/tUtgLOESpCx7ue4BaeCTqp3vn1b.jpg",
     },
-    // Adicione mais filmes conforme necessário
+    {
+      id: 4,
+      title: "The Nun II",
+      genre: "Terror",
+      image: "https://image.tmdb.org/t/p/w500/5gzzkR7y3hnY8AD1wXjCnVlHba5.jpg",
+    },
+    {
+      id: 5,
+      title: "The Exorcist: Believer",
+      genre: "Terror",
+      image: "https://image.tmdb.org/t/p/w500/qVKirUdmoex8SdfUk8WDDWwrcCh.jpg",
+    },
   ];
 
   return (
