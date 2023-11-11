@@ -2,6 +2,7 @@
 import { StyleSheet } from "react-native";
 
 const filterModalStyles = StyleSheet.create({
+  // Container que abre quando clicar no botão do filtro
   modalContainer: {
     backgroundColor: "#fff",
     padding: 20,
@@ -10,6 +11,7 @@ const filterModalStyles = StyleSheet.create({
     borderRadius: 10,
     elevation: 5,
   },
+  //Texto "Filtrar por" dentro container
   modalTitle: {
     fontSize: 18,
     marginBottom: 10,
