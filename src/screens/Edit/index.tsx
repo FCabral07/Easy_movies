@@ -1,11 +1,17 @@
 import React from "react";
 import perfil from "../../../assets/perfil.png"
 import Icon from 'react-native-vector-icons/AntDesign';
+import { useNavigation } from "@react-navigation/native";
 import * as S from './styles'
 import ComponentBar from "../../components/componentBar/ComponentBar";
 
 // Criando a página home
 const Edit = (): JSX.Element => {
+    const navigation = useNavigation();
+    
+    const handleLoginClick = () => {
+        navigation.navigate("Home" as never);
+    };
     return (
         <S.Container>
             <S.ContainerPerfil>
@@ -36,7 +42,7 @@ const Edit = (): JSX.Element => {
                 </S.ContainerInput>
 
                 <S.ContainerButtonExit>
-                    <S.ButtonExit>
+                    <S.ButtonExit onPress={handleLoginClick}>
                         <S.TextNameBold>
                             Sair
                         </S.TextNameBold>
