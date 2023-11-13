@@ -14,6 +14,7 @@ import Icon from "react-native-vector-icons/AntDesign";
 import IconMaterial from "react-native-vector-icons/MaterialIcons";
 import Styles from "./Styles";
 import { useNavigation } from "@react-navigation/native";
+import Logo from "../../components/Logo/ComponentLogo";
 
 // Criando a página de login
 const Login = (): JSX.Element => {
@@ -65,10 +66,7 @@ const Login = (): JSX.Element => {
 
             {/* Definindo a logo */}
             <View style={Styles.logo}>
-              <Image
-                source={require("../../../assets/izyFilm.png")}
-                style={{ width: 300, height: 300 }}
-              />
+              <Logo/>
             </View>
 
             {/* Criando os inputs de login e senha */}

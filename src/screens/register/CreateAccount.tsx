@@ -14,6 +14,7 @@ import Icon from "react-native-vector-icons/AntDesign";
 import IconMaterial from "react-native-vector-icons/MaterialIcons";
 import Styles from "./Styles";
 import { useNavigation } from "@react-navigation/native";
+import Logo from "../../components/Logo/ComponentLogo";
 
 // Página de criar conta
 const CreateAccount = (): JSX.Element => {
@@ -59,10 +60,7 @@ const CreateAccount = (): JSX.Element => {
 
             {/* Logo */}
             <View style={Styles.logo}>
-              <Image
-                source={require("../../../assets/izyFilm.png")}
-                style={{ width: 300, height: 300 }}
-              />
+              <Logo/>
             </View>
 
             {/* Container de input com senha, email e username */}

@@ -14,6 +14,11 @@ const Styles = StyleSheet.create({
   cardStyle: {
     overflow: "hidden",
   },
+  favoriteIcon: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+  }
 });
 
 export default Styles;

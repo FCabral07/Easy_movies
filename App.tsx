@@ -9,6 +9,7 @@ import Search from "./src/screens/search/Search";
 import PopularMovies from "./src/screens/popularMovies/PopularMovies";
 import Profile from "./src/screens/profile/Profile";
 import Edit from "./src/screens/Edit";
+import Favorite from "./src/screens/Favorite/Favorite";
 import { LogBox } from "react-native";
 
 LogBox.ignoreLogs(["ViewPropTypes will be removed"]);
@@ -63,6 +64,10 @@ const App = (): JSX.Element => {
           name="PopularMovies"
           component={PopularMovies}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen name="Favorite" 
+        component={Favorite} 
+        options={{ headerShown: false }} 
         />
       </Stack.Navigator>
     </NavigationContainer>
