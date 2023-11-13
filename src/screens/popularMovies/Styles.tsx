@@ -11,8 +11,8 @@ const Styles = StyleSheet.create({
     alignItems: "center", // Centraliza o texto no meio
   },
   title: {
-    marginTop: "15%",
-    fontSize: 38,
+    marginTop: "17%",
+    fontSize: 28,
     fontWeight: "bold",
     color: "#FBC500", // Cor do título
   },

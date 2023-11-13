@@ -34,8 +34,8 @@ const popularMoviesStyles = StyleSheet.create({
     marginTop: "2%",
   },
   card: {
-    width: 195,
-    height: 400,
+    width: 175,
+    height: 360,
     padding: 50,
     marginBottom: "4%",
     paddingHorizontal: 0,
