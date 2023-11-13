@@ -11,15 +11,11 @@ const Profile = (): JSX.Element => {
     const navigation = useNavigation();
 
     const handleEditAccount = () => {
-        navigation.navigate("Edit" as never);
+        navigation.navigate("Edit");
     };
 
-    // const handleIconClick = () => {
-    //     navigation.navigate("JoinNow" as never);
-    // };
-
     const handleLoginClick = () => {
-        navigation.navigate("Home" as never);
+        navigation.navigate("Home");
     };
 
     return (

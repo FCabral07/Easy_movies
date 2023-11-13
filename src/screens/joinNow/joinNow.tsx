@@ -14,7 +14,7 @@ const JoinNow = (): JSX.Element => {
   const navigation = useNavigation();
 
   const handleLogin = () => {
-    navigation.navigate("Login" as never);
+    navigation.navigate("Login");
   };
 
   return (

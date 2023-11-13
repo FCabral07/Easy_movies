@@ -21,11 +21,11 @@ const CreateAccount = (): JSX.Element => {
   const navigation = useNavigation();
 
   const handleIconClick = () => {
-    navigation.navigate("Login" as never);
+    navigation.navigate("Login");
   };
 
   const handleCreateAccount = () => {
-    navigation.navigate("Login" as never);
+    navigation.navigate("Login");
   };
   return (
     // Background

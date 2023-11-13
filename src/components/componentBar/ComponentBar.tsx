@@ -23,7 +23,7 @@ const ComponentBar = () => {
   // Definindo a cor do icon e navegação
   const navigateToScreen = (screenName) => {
     setActiveScreen(screenName);
-    navigation.navigate(screenName as never);
+    navigation.navigate(screenName);
   };
 
   return (

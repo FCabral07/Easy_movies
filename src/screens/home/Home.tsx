@@ -1,6 +1,6 @@
-// import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   ImageBackground,
   ScrollView,
@@ -13,6 +13,7 @@ import ComponentUpBar from "../../components/componentUpBar/ComponentUpBar";
 import PopularCards from "../../components/popularCards/PopularCards";
 import Top10Views from "../../components/top10Cards/Top10Cards";
 import Styles from "./Styles";
+import MovieDetails from "../details/MovieDetails";
 
 // Criando a página home
 const Home = (): JSX.Element => {
@@ -21,7 +22,9 @@ const Home = (): JSX.Element => {
     { title: 'Até o fim', image: 'https://br.web.img3.acsta.net/pictures/20/05/12/18/10/5886228.jpg' },
     { title: 'O ano rubro negro', image: 'https://mundorubronegro.com/wp-content/uploads/2021/05/51cqrRqElBL.jpg' },
     { title: 'Flamengo hexa', image: 'https://mundorubronegro.com/wp-content/uploads/2021/05/D_NQ_NP_803437-MLB25847302024_082017-W.jpg' },
-  ];  
+  ];
+
+  const navigation = useNavigation();  
 
   return (
     // Criando o container

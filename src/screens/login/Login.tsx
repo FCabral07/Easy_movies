@@ -21,15 +21,15 @@ const Login = (): JSX.Element => {
   const navigation = useNavigation();
 
   const handleCreateAccount = () => {
-    navigation.navigate("CreateAccount" as never);
+    navigation.navigate("CreateAccount");
   };
 
   const handleIconClick = () => {
-    navigation.navigate("JoinNow" as never);
+    navigation.navigate("JoinNow");
   };
 
   const handleLoginClick = () => {
-    navigation.navigate("Home" as never);
+    navigation.navigate("Home");
   };
 
   return (
