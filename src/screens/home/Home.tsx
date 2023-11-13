@@ -1,30 +1,65 @@
 import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import React, { useState } from "react";
+// import { useNavigation } from "@react-navigation/native";
 import {
   ImageBackground,
   ScrollView,
   Text,
   TouchableOpacity,
   View,
+  Image,
 } from "react-native";
 import ComponentBar from "../../components/componentBar/ComponentBar";
 import ComponentUpBar from "../../components/componentUpBar/ComponentUpBar";
 import PopularCards from "../../components/popularCards/PopularCards";
 import Top10Views from "../../components/top10Cards/Top10Cards";
 import Styles from "./Styles";
-import MovieDetails from "../details/MovieDetails";
+import Modal from "react-native-modal";
+import Icon from "react-native-vector-icons/AntDesign";
 
 // Criando a página home
 const Home = (): JSX.Element => {
   const movies = [
-    { title: 'Oppenheimer', image: 'https://www.atoupeira.com.br/wp-content/uploads/2023/05/oppenheimer-novo-poster.jpg' },
-    { title: 'Até o fim', image: 'https://br.web.img3.acsta.net/pictures/20/05/12/18/10/5886228.jpg' },
-    { title: 'O ano rubro negro', image: 'https://mundorubronegro.com/wp-content/uploads/2021/05/51cqrRqElBL.jpg' },
-    { title: 'Flamengo hexa', image: 'https://mundorubronegro.com/wp-content/uploads/2021/05/D_NQ_NP_803437-MLB25847302024_082017-W.jpg' },
+    {
+      title: "Oppenheimer",
+      image:
+        "https://www.atoupeira.com.br/wp-content/uploads/2023/05/oppenheimer-novo-poster.jpg",
+      description:
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio quos voluptate voluptas quasi nobis, nesciunt magnam? Veniam sunt, nisi praesentium id amet repellat quas natus minima velit voluptatibus est inventore!",
+    },
+    {
+      title: "Até o fim",
+      image:
+        "https://br.web.img3.acsta.net/pictures/20/05/12/18/10/5886228.jpg",
+      description: "Lorem ipsum dolor sit amet.",
+    },
+    {
+      title: "O ano rubro negro",
+      image:
+        "https://mundorubronegro.com/wp-content/uploads/2021/05/51cqrRqElBL.jpg",
+      description: "Lorem ipsum dolor sit amet.",
+    },
+    {
+      title: "Flamengo hexa",
+      image:
+        "https://mundorubronegro.com/wp-content/uploads/2021/05/D_NQ_NP_803437-MLB25847302024_082017-W.jpg",
+      description: "Lorem ipsum dolor sit amet.",
+    },
   ];
 
-  const navigation = useNavigation();  
+  const bgImage = movies[0];
+
+  // Estado para controlar a exibição do pop-up
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  // Estado para armazenar os detalhes do filme selecionado
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
+  // Função para exibir o pop-up com os detalhes do filme
+  const toggleModal = (movie) => {
+    setSelectedMovie(movie);
+    setModalVisible(!isModalVisible);
+  };
 
   return (
     // Criando o container
@@ -42,7 +77,7 @@ const Home = (): JSX.Element => {
         <View style={Styles.focus}>
           <ImageBackground
             source={{
-              uri: "https://www.atoupeira.com.br/wp-content/uploads/2023/05/oppenheimer-novo-poster.jpg",
+              uri: bgImage.image
             }}
             style={Styles.imageFocus}
           >
@@ -54,7 +89,7 @@ const Home = (): JSX.Element => {
                 <TouchableOpacity style={Styles.buttonFavorite}>
                   <Text style={Styles.buttonText}>+ Favorito</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={Styles.buttonDetails}>
+                <TouchableOpacity style={Styles.buttonDetails} onPress={() => toggleModal(bgImage)}>
                   <Text style={Styles.buttonText}>Detalhes</Text>
                 </TouchableOpacity>
               </View>
@@ -93,9 +128,33 @@ const Home = (): JSX.Element => {
             <Text style={Styles.text}>TOP 10</Text>
           </View>
           <View style={Styles.rowMovies}>
-            <Top10Views data={movies}/>
+            <Top10Views data={movies} onPressMovie={toggleModal} />
           </View>
         </View>
+
+        <Modal isVisible={isModalVisible}>
+          <View style={Styles.containerModal}>
+            <Image
+              source={{ uri: selectedMovie?.image }}
+              style={Styles.imageModal}
+            />
+            <TouchableOpacity
+              onPress={() => setModalVisible(false)}
+              style={Styles.iconModal}
+            >
+              <Icon name="close" color="#fff" size={30}></Icon>
+            </TouchableOpacity>
+            <View style={Styles.textTitleContainer}>
+              <Text style={Styles.textTitleModal}>{selectedMovie?.title}</Text>
+            </View>
+            <View>
+              <Text style={Styles.textDescriptionContainer}>Descrição</Text>
+              <Text style={Styles.textDescriptionModel}>
+                {selectedMovie?.description}
+              </Text>
+            </View>
+          </View>
+        </Modal>
 
         <View style={Styles.films}>
           <View style={Styles.newFilm}>

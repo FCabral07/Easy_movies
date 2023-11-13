@@ -5,7 +5,7 @@ const Styles = StyleSheet.create({
     width: 350,
     height: 550,
     borderRadius: 10,
-    overflow: 'hidden',
+    // overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',
   },

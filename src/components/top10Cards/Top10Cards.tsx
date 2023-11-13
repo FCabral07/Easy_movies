@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import Styles from './Styles';
 
-const Top10Views = ({ data }) => {
+const Top10Views = ({ data, onPressMovie }) => {
   const [activeSlide, setActiveSlide] = useState(0);
 
   const renderCarouselItem = ({ item }) => (
-    <View style={Styles.carouselItem}>
-      <Text style={Styles.text}>{item.title}</Text>
-      <Image source={{ uri: item.image }} style={Styles.image} />
-    </View>
+    <TouchableOpacity onPress={() => onPressMovie(item)}>
+      <View style={Styles.carouselItem}>
+        <Text style={Styles.text}>{item.title}</Text>
+        <Image source={{ uri: item.image }} style={Styles.image} />
+      </View>
+    </TouchableOpacity>
   );
 
   return (

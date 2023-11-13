@@ -1,5 +1,5 @@
 import React from "react";
-// import { StyleSheet } from "react-native"
+import { StyleSheet } from "react-native"
 import perfil from "../../../assets/perfil.png"
 import { useNavigation } from "@react-navigation/native";
 import ComponentBar from "../../components/componentBar/ComponentBar";
@@ -15,48 +15,50 @@ const Profile = (): JSX.Element => {
     };
 
     const handleLoginClick = () => {
-        navigation.navigate("Home");
+        navigation.navigate("Login");
     };
 
     return (
-        <S.Container>
-            <S.ContainerPerfil>
-                <S.ContainerImage>
-                    <S.Image source={perfil} />
-                </S.ContainerImage>
-                <S.TextName>Weslley</S.TextName>
-            </S.ContainerPerfil>
-            <S.ContainerButton>
-                <S.ContainerButtonEdit>
-                    <S.TextNameBold onPress={handleEditAccount}>
-                        Editar perfil
-                    </S.TextNameBold>
-                </S.ContainerButtonEdit>
-            </S.ContainerButton>
-            <S.ContainerInfo>
-                <S.TextNameBold>Minhas informações</S.TextNameBold>
-                <S.Line></S.Line>
-            </S.ContainerInfo>
-            <S.ContainerUserData>
-                <S.ItalicText>
-                    <S.TextNameBold>Nome:</S.TextNameBold> Weslley
-                </S.ItalicText>
-                <S.ItalicText>
-                    <S.TextNameBold>Email:</S.TextNameBold> Weslley@email.com
-                </S.ItalicText>
-                <S.ItalicText>
-                    <S.TextNameBold>Senha:</S.TextNameBold> ****
-                </S.ItalicText>
-                <S.ContainerButtonExit>
-                    <S.ButtonExit onPress={handleLoginClick}>
-                        <S.TextNameBold>
-                            Sair
+        <>
+            <S.Container>
+                <S.ContainerPerfil>
+                    <S.ContainerImage>
+                        <S.Image source={perfil} />
+                    </S.ContainerImage>
+                    <S.TextName>Weslley</S.TextName>
+                </S.ContainerPerfil>
+                <S.ContainerButton>
+                    <S.ContainerButtonEdit onPress={handleEditAccount}>
+                        <S.TextNameBold >
+                            Editar perfil
                         </S.TextNameBold>
-                    </S.ButtonExit>
-                </S.ContainerButtonExit>
-            </S.ContainerUserData>
+                    </S.ContainerButtonEdit>
+                </S.ContainerButton>
+                <S.ContainerInfo>
+                    <S.TextNameBold>Minhas informações</S.TextNameBold>
+                    <S.Line></S.Line>
+                </S.ContainerInfo>
+                <S.ContainerUserData>
+                    <S.ItalicText>
+                        <S.TextNameBold>Nome:</S.TextNameBold> Weslley
+                    </S.ItalicText>
+                    <S.ItalicText>
+                        <S.TextNameBold>Email:</S.TextNameBold> Weslley@email.com
+                    </S.ItalicText>
+                    <S.ItalicText>
+                        <S.TextNameBold>Senha:</S.TextNameBold> ****
+                    </S.ItalicText>
+                    <S.ContainerButtonExit>
+                        <S.ButtonExit onPress={handleLoginClick}>
+                            <S.TextNameBold>
+                                Sair
+                            </S.TextNameBold>
+                        </S.ButtonExit>
+                    </S.ContainerButtonExit>
+                </S.ContainerUserData>
+            </S.Container>
             <ComponentBar />
-        </S.Container>
+        </>
     );
 };
 

@@ -56,7 +56,7 @@ const Styles = StyleSheet.create({
     backgroundColor: "#transparent",
   },
   top10: {
-    height: "22%",
+    height: "18%",
     marginTop: "10%",
     backgroundColor: "#transparent",
   },
@@ -64,24 +64,61 @@ const Styles = StyleSheet.create({
     height: "12%",
   },
   top10text:{
-    height: '5%',
+    height: '8%',
   },
   rowMovies: {
-    width: 390,
-    height: 580,
+    width: 340,
+    height: 550,
     justifyContent: 'center',
     marginLeft: 18,
-    marginTop: 35
-  },
-  top10movies:{
-    flexDirection: "column",
-    marginLeft: '5%'
+    marginTop: 0,
   },
   text: {
     color: "#fff",
     marginTop: 10,
     marginLeft: 10,
     fontSize: 25,
+  },
+  containerModal: {
+    backgroundColor: '#180806',
+    width: '100%',
+    height: '90%',
+    marginTop: '5%',
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  imageModal: {
+    width: '100%',
+    height: '30%',
+    margin: 0
+  },
+  textTitleContainer: {
+    alignItems: 'center',
+  },
+  textTitleModal: {
+    color: '#FBC500',
+    fontSize: 30,
+    marginTop: 15,
+    fontWeight: 'bold'
+  },
+  iconModal: {
+    position: 'absolute',
+    top: 15,
+    right: 20
+  },
+  textDescriptionContainer: {
+    color: '#d5d5d5',
+    margin: 15,
+    fontSize: 20,
+    fontWeight: "bold"
+  },
+  textDescriptionModel: {
+    color: '#d5d5d5',
+    fontSize: 18,
+    marginLeft: 15,
+    marginRight: 15,
+    lineHeight: 20,
+    textAlign: 'justify',
   },
   // Navbar: {
   //   position: 'absolute',

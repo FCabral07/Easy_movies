@@ -78,7 +78,7 @@ export const ContainerInputBox = styled.TextInput`
     margin-bottom: 10px;
 `
 export const ContainerButtonExit = styled.View`
-    margin-top: 170px; 
+    margin-top: 80px; 
     align-items: center;
     justify-content: center;
 `

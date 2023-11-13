@@ -1,4 +1,5 @@
 import styled from "styled-components/native"
+import ComponentBar from "../../components/componentBar/ComponentBar";
 
 
 export const Container = styled.View`
@@ -31,7 +32,7 @@ export const TextName = styled.Text`
     font-size: 18px;
 `
 export const ContainerButton = styled.View`
-    margin-top: 80px; 
+    margin-top: 30px; 
     align-items: center;
     justify-content: center;
 `
@@ -73,7 +74,7 @@ export const ContainerUserData = styled.View`
 `
 
 export const ContainerButtonExit = styled.View`
-    margin-top: 170px; 
+    margin-top: 100px; 
     align-items: center;
     justify-content: center;
 `
