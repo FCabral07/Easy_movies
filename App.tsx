@@ -23,6 +23,7 @@ const App = (): JSX.Element => {
         initialRouteName="JoinNow"
         screenOptions={{ 
           gestureEnabled: false, 
+          animation: 'none',
         }}
       >
         <Stack.Screen

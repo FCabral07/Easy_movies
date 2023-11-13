@@ -12,7 +12,7 @@ const Styles = StyleSheet.create({
   },
   iconContainer: {
     marginLeft: 85,
-    marginTop: 70,
+    marginTop: 66,
   },
   appName: {
     marginLeft: '31%',
