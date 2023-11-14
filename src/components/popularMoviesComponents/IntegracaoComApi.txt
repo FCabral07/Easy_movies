@@ -1,0 +1,57 @@
+import React, { useContext, useEffect, useState } from "react";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import FilterModal from "../../components/popularMoviesComponents/FilterModal";
+import { MovieList } from "../../components/popularMoviesComponents/PopularMoviesComponents";
+import Styles from "./Styles";
+import ComponentBar from "../../components/componentBar/ComponentBar";
+import AppContext from "../../context/AppContext";
+import apiInstance from "../../services/apiInstance";
+
+É preciso refazer a estruturação dos componentes, ter apenas PopularMoviesComponents.tsx e PopularMovies.tsx
+
+Em que PopularMoviesComponents.tsx fará as requisições e o mapeamento dentro de cards, restando para PopularMovies.tsx apenas a visualização.
+
+const PopularMovies: React.FC = () => {
+  const { movies, setMovies } = useContext(AppContext);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await apiInstance.get("/movie/popular");
+        setMovies(response.data.results);
+      } catch (error) {
+        console.error("Error fetching popular movies:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [setMovies]);
+
+  return (
+    <View style={Styles.container}>
+      <ScrollView contentContainerStyle={Styles.container} indicatorStyle="white" style={{ zIndex: 0 }}>
+        <View style={Styles.header}>
+          <Text style={Styles.title}>Filmes Populares</Text>
+        </View>
+        <TouchableOpacity style={Styles.filterButton}>
+          <Ionicons name="ios-filter" size={24} color="white" />
+        </TouchableOpacity>
+        {loading ? (
+          <Text>Loading...</Text>
+        ) : (
+          <View>
+            <MovieList movies={movies} />
+          </View>
+        )}
+        <FilterModal isVisible={false} onClose={() => {}} />
+      </ScrollView>
+      <ComponentBar />
+    </View>
+  );
+};
+
+export default PopularMovies;
