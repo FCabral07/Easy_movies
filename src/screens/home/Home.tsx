@@ -74,6 +74,7 @@ const Home = (): JSX.Element => {
         indicatorStyle="white"
         style={{ zIndex: 0 }}
       >
+        {/* Criando card principal, onde fica a imagem de destaque */}
         <View style={Styles.focus}>
           <ImageBackground
             source={{
@@ -97,6 +98,7 @@ const Home = (): JSX.Element => {
           </ImageBackground>
         </View>
 
+        {/* Cards populares */}
         <View style={Styles.films}>
           <View style={Styles.newFilm}>
             <Text style={Styles.text}>Popular</Text>
@@ -123,6 +125,7 @@ const Home = (): JSX.Element => {
           />
         </View>
 
+        {/* Card TOP10, usando o carousel */}
         <View style={Styles.top10}>
           <View style={Styles.top10text}>
             <Text style={Styles.text}>TOP 10</Text>
@@ -132,6 +135,7 @@ const Home = (): JSX.Element => {
           </View>
         </View>
 
+        {/* Criando o modal, onde eu clico na imagem e ele detalha as informações */}
         <Modal isVisible={isModalVisible}>
           <View style={Styles.containerModal}>
             <Image
@@ -156,6 +160,7 @@ const Home = (): JSX.Element => {
           </View>
         </Modal>
 
+        {/* Cards dos gêneros */}
         <View style={Styles.films}>
           <View style={Styles.newFilm}>
             <Text style={Styles.text}>Comédia</Text>
