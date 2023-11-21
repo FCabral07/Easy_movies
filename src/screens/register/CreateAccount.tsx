@@ -60,11 +60,24 @@ const CreateAccount = (): JSX.Element => {
 
             {/* Logo */}
             <View style={Styles.logo}>
-              <Logo/>
+              <Logo />
             </View>
 
-            {/* Container de input com senha, email e username */}
+            {/* Container de input com nome, senha, email e username */}
             <View style={Styles.inputContainer}>
+              <View style={Styles.inputWithIcon}>
+                <Icon
+                  name="idcard"
+                  size={25}
+                  color="#FFF0F5"
+                  style={Styles.icon}
+                />
+                <TextInput
+                  style={Styles.input}
+                  placeholder="Name"
+                  placeholderTextColor="#FFF0F5"
+                />
+              </View>
               <View style={Styles.inputWithIcon}>
                 <Icon
                   name="user"
@@ -108,7 +121,10 @@ const CreateAccount = (): JSX.Element => {
             </View>
 
             {/* Botão de criar conta */}
-            <TouchableOpacity style={Styles.button} onPress={handleCreateAccount}>
+            <TouchableOpacity
+              style={Styles.button}
+              onPress={handleCreateAccount}
+            >
               <Text style={Styles.buttonText}>Criar conta</Text>
             </TouchableOpacity>
           </ScrollView>
