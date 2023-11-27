@@ -1,46 +1,22 @@
 // components/popularMoviesComponents/Styles.jsx
 import { StyleSheet } from "react-native";
 
-const filterModalStyles = StyleSheet.create({
-  // Container que abre quando clicar no botão do filtro
-  modalContainer: {
-    backgroundColor: "#fff",
-    padding: 30,
-    marginVertical: 50,
-    marginHorizontal: 60,
-    borderRadius: 20,
-    elevation: 5,
-  },
-  //Texto "Filtrar por" dentro container
-  modalTitle: {
-    fontSize: 18,
-    marginBottom: 10,
-  },
-  closeButton: {
-    backgroundColor: "#333",
-    padding: 10,
-    borderRadius: 8,
-    marginTop: 20,
-    alignSelf: "stretch",
-    alignItems: "center",
-  },
-});
-
 const popularMoviesStyles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
     flexWrap: "wrap",
-    marginTop: "2%",
+    marginTop: "8%",
+    marginHorizontal: "0%",
   },
   card: {
-    width: 175,
-    height: 360,
+    width: "100%",
+    height: "4%",
     padding: 50,
     marginBottom: "4%",
     paddingHorizontal: 0,
     paddingTop: 20,
-    marginHorizontal: 1,
+    marginHorizontal: 4,
   },
   image: {
     width: "100%",
@@ -49,18 +25,21 @@ const popularMoviesStyles = StyleSheet.create({
     borderRadius: 5,
   },
   title: {
-    textAlign: "center",
-    marginTop: "1%",
+    marginVertical: "4%",
     color: "#FFFAFA",
     fontSize: 17,
     fontWeight: "bold",
   },
   genre: {
-    textAlign: "center",
     marginTop: "1%",
     color: "#FFFAFA",
     fontSize: 16,
   },
+  voteAverage: {
+    marginBottom: 30,
+    fontSize: 16,
+    color: "red",
+  },
 });
 
-export { filterModalStyles, popularMoviesStyles };
+export { popularMoviesStyles };
