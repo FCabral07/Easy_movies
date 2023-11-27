@@ -2,14 +2,11 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import FilterModal from "../../components/popularMoviesComponents/FilterModal";
 import { MovieList } from "../../components/popularMoviesComponents/PopularMoviesComponents";
 import Styles from "./Styles";
 import ComponentBar from "../../components/componentBar/ComponentBar";
 
 const PopularMovies: React.FC = () => {
-  const [showFilterOptions, setShowFilterOptions] = useState(false);
-
   // Dummy data para testar o MovieList
   const movies = [
     {
@@ -84,20 +81,9 @@ const PopularMovies: React.FC = () => {
         <View style={Styles.header}>
           <Text style={Styles.title}>Filmes Populares</Text>
         </View>
-        <TouchableOpacity
-          style={Styles.filterButton}
-          onPress={() => setShowFilterOptions(true)}
-        >
-          <Ionicons name="ios-filter" size={24} color="white" />
-        </TouchableOpacity>
         <View>
           <MovieList movies={movies} />
         </View>
-
-        <FilterModal
-          isVisible={showFilterOptions}
-          onClose={() => setShowFilterOptions(false)}
-        />
       </ScrollView>
       <ComponentBar />
     </View>
