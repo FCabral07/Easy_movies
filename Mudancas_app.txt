@@ -1,0 +1,72 @@
+import React, { useState, useEffect } from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
+import axios from "axios";
+import AppContext from "./AppContext"; // Importe o contexto global
+
+import Home from "./src/screens/home/Home";
+import Search from "./src/screens/search/Search";
+import PopularMovies from "./src/screens/popularMovies/PopularMovies";
+import Favorite from "./src/screens/Favorite/Favorite";
+import { LogBox } from "react-native";
+
+LogBox.ignoreLogs(["ViewPropTypes will be removed"]);
+
+const App = (): JSX.Element => {
+  const Stack = createNativeStackNavigator();
+  const [apiInstance, setApiInstance] = useState(null); // Estado para armazenar a instância da API
+
+  useEffect(() => {
+    // Função para inicializar a instância da API
+    const initializeApiInstance = async () => {
+      try {
+        const instance = axios.create({
+          baseURL: "sua_url_da_api", // Substitua 'sua_url_da_api' pela URL correta da API
+        });
+        setApiInstance(instance); // Atualiza o estado com a instância da API
+      } catch (error) {
+        console.error("Erro ao inicializar a instância da API:", error);
+      }
+    };
+
+    // Chama a função ao montar o componente
+    initializeApiInstance();
+  }, []);
+
+  return (
+    <NavigationContainer>
+      <AppContext.Provider value={apiInstance}> {/* Fornece a instância da API para os componentes abaixo */}
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{ 
+            gestureEnabled: false, 
+            animation: 'none',
+          }}
+        >
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Search"
+            component={Search}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="PopularMovies"
+            component={PopularMovies}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen 
+            name="Favorite" 
+            component={Favorite} 
+            options={{ headerShown: false }} 
+          />
+        </Stack.Navigator>
+      </AppContext.Provider>
+    </NavigationContainer>
+  );
+};
+
+export default App;
