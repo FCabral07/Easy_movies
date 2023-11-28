@@ -1,45 +1,44 @@
-import { Card } from "@rneui/base";
 import React, { useState } from "react";
-import { ScrollView, View, TouchableOpacity, Vibration} from "react-native";
-import Styles from "../popularCards/Styles";
+import { View, TouchableOpacity, ScrollView, Vibration, Image } from "react-native";
+import { Card } from "@rneui/base";
 import Icon from "react-native-vector-icons/FontAwesome";
+import IconClose from 'react-native-vector-icons/AntDesign'
+import Styles from "../popularCards/Styles";
+import Modal from 'react-native-modal'
 
+export const favoritesMovies = [];
 
-
-export const favoritesMovies = [] 
-
-export const MovieCard = ({ image }) => {
-
+export const MovieCard = ({ movie }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const handleFavoritePress = () => {
-    // Aqui você pode enviar os dados do card para a tela "Favorite"
     function favoritePress() {
-      if(isFavorite == false) {
-        favoritesMovies.push({ image })
+      if (isFavorite === false) {
+        favoritesMovies.push(movie);
         console.log("Filme adicionado à lista de Favoritos");
-      } else if (isFavorite == true) {
-        favoritesMovies.pop()
+      } else {
+        favoritesMovies.pop();
         console.log("Filme removido da lista de Favoritos");
       }
     }
-    favoritePress()
-    Vibration.vibrate()
+    favoritePress();
+    Vibration.vibrate();
     console.log("Lista Atual:");
     console.log(favoritesMovies);
-    // Alterna o estado do favorito
     setIsFavorite(!isFavorite);
   };
 
   return (
     <View style={Styles.cardContainer}>
       <Card containerStyle={{ backgroundColor: "#060d17", borderWidth: 0 }}>
-        <Card.Image
-          source={{ uri: image }}
-          style={Styles.cardImage}
-          resizeMode="cover"
-        />
+        <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <Card.Image
+            source={{ uri: movie.image }}
+            style={Styles.cardImage}
+            resizeMode="cover"
+          />
+        </TouchableOpacity>
         <View style={Styles.favoriteIcon}>
           <TouchableOpacity onPress={handleFavoritePress}>
             <Icon
@@ -50,24 +49,37 @@ export const MovieCard = ({ image }) => {
           </TouchableOpacity>
         </View>
       </Card>
+
+      <Modal
+      isVisible = {isModalVisible}
+      >
+        <View style={Styles.containerModal}>
+          <Image
+            source={{ uri: movie.image }}
+            style={Styles.imageModal}
+            // resizeMode="cover"
+          />
+          <TouchableOpacity
+          onPress={() => setModalVisible(false)}
+          style={Styles.iconModal}
+          >
+            <IconClose name="close" color='#fff' size={30}></IconClose>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   );
 };
 
-const PopularCards = ({ movies}) => {
+const PopularCards = ({ movies }) => {
   return (
-    <View>
-      <ScrollView>
-        <View>
-          <ScrollView horizontal>
-            {movies.map((movie, i) => (
-              <MovieCard key={i} image={movie.image} />
-              
-            ))}
-          </ScrollView>
-        </View>
-      </ScrollView>
-    </View>
+    <ScrollView horizontal>
+      <View style={{ flexDirection: "row" }}>
+        {movies.map((movie, i) => (
+          <MovieCard key={i} movie={movie} />
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 
