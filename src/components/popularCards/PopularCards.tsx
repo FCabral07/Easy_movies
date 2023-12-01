@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, ScrollView, Vibration, Image } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Vibration,
+  Image,
+  Text
+} from "react-native";
 import { Card } from "@rneui/base";
 import Icon from "react-native-vector-icons/FontAwesome";
-import IconClose from 'react-native-vector-icons/AntDesign'
+import IconClose from "react-native-vector-icons/AntDesign";
 import Styles from "../popularCards/Styles";
-import Modal from 'react-native-modal'
+import Modal from "react-native-modal";
 
 export const favoritesMovies = [];
 
@@ -50,9 +57,7 @@ export const MovieCard = ({ movie }) => {
         </View>
       </Card>
 
-      <Modal
-      isVisible = {isModalVisible}
-      >
+      <Modal isVisible={isModalVisible}>
         <View style={Styles.containerModal}>
           <Image
             source={{ uri: movie.image }}
@@ -60,11 +65,20 @@ export const MovieCard = ({ movie }) => {
             // resizeMode="cover"
           />
           <TouchableOpacity
-          onPress={() => setModalVisible(false)}
-          style={Styles.iconModal}
+            onPress={() => setModalVisible(false)}
+            style={Styles.iconModal}
           >
-            <IconClose name="close" color='#fff' size={30}></IconClose>
+            <IconClose name="close" color="#fff" size={30}></IconClose>
           </TouchableOpacity>
+          <View style={Styles.textTitleContainer}>
+            <Text style={Styles.textTitleModal}>{movie.title}</Text>
+          </View>
+          <View>
+            <Text style={Styles.textDescriptionContainer}>Descrição</Text>
+            <Text style={Styles.textDescriptionModel}>
+              {movie.description}
+            </Text>
+          </View>
         </View>
       </Modal>
     </View>

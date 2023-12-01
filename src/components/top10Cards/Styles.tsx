@@ -28,10 +28,10 @@ const Styles = StyleSheet.create({
     paddingVertical: 10,
   },
   paginationDot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    marginHorizontal: 8,
+    width: 0,
+    height: 0,
+    borderRadius: 2,
+    marginHorizontal: 18,
     backgroundColor: '#D8BFD8',
   },
   paginationInactiveDot: {

@@ -108,16 +108,16 @@ const Styles = StyleSheet.create({
   },
   textDescriptionContainer: {
     color: '#d5d5d5',
-    margin: 15,
+    marginLeft: 15,
+    marginVertical: 8,
     fontSize: 20,
     fontWeight: "bold"
   },
   textDescriptionModel: {
     color: '#d5d5d5',
-    fontSize: 18,
-    marginLeft: 15,
-    marginRight: 15,
-    lineHeight: 20,
+    fontSize: 12,
+    marginHorizontal: 15,
+    lineHeight: 14,
     textAlign: 'justify',
   },
   // Navbar: {
