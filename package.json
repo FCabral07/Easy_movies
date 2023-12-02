@@ -17,6 +17,8 @@
     "@rneui/themed": "^0.0.0-edge.2",
     "@types/react": "~18.2.14",
     "axios": "^1.6.2",
+    "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.0",
     "dotenv": "^16.3.1",
     "expo": "~49.0.15",
     "expo-linear-gradient": "~12.3.0",

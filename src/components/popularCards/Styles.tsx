@@ -60,6 +60,52 @@ const Styles = StyleSheet.create({
     lineHeight: 14,
     textAlign: 'justify',
   },
+  generalContainer:{
+    marginVertical: 40,
+    marginHorizontal: 15,
+    flexDirection: 'row',
+  },
+  ratingContainer:{
+    flex: 1,
+    alignItems: 'flex-start',
+  },
+  averageScore:{
+    flexDirection: 'row',
+    width: 80,
+    justifyContent: 'center',
+    marginTop: 5
+  },
+  textContainer:{
+    color: '#d5d5d5',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  numberRatingContainer:{
+    color: '#d5d5d5',
+    fontSize: 12,
+    lineHeight: 14,
+    textAlign: 'justify',
+    marginHorizontal: 5,
+    marginVertical: 4
+  },
+  releaseDateContainer:{
+    flex: 1,
+    alignItems: 'flex-end'
+  },
+  dateContainer:{
+    flexDirection: 'row',
+    width: 136,
+    justifyContent: 'center',
+    marginVertical: 6
+  },
+  date:{
+    color: '#d5d5d5',
+    fontSize: 12,
+    lineHeight: 14,
+    textAlign: 'justify',
+    marginHorizontal: 5,
+    marginVertical: 4
+  },
 });
 
 export default Styles;

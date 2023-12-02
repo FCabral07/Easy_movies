@@ -2,6 +2,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { TMDB_API_KEY } from "../../../env";
+import { format } from "date-fns";
+import { utcToZonedTime } from "date-fns-tz";
 // import { useNavigation } from "@react-navigation/native";
 import {
   ImageBackground,
@@ -18,6 +20,7 @@ import Top10Views from "../../components/top10Cards/Top10Cards";
 import Styles from "./Styles";
 import Modal from "react-native-modal";
 import Icon from "react-native-vector-icons/AntDesign";
+import IconAwesome from 'react-native-vector-icons/FontAwesome'
 
 // Criando a página home
 const Home = (): JSX.Element => {
@@ -29,11 +32,12 @@ const Home = (): JSX.Element => {
     image: `https://image.tmdb.org/t/p/w500/872585.jpg`,
     title: "Título Padrão",
     description: "Descrição Padrão",
-    // Outros campos com valores padrão
   });
 
+  // Requisição a API
   const fetchMovies = async (listType, genreID = null) => {
     try {
+      // Link de requisição a api
       let url = `https://api.themoviedb.org/3/movie/${listType}?api_key=${TMDB_API_KEY}&language=pt-BR`;
 
       if (genreID) {
@@ -42,19 +46,40 @@ const Home = (): JSX.Element => {
 
       const response = await axios.get(url);
 
+      // Transformando o JSON retornado da API para conseguir manipular os dados
       const fetchedMovies = response.data.results.map((movie) => {
         let description = movie.overview;
         if (!description) {
           description = "Sem descrição até o momento";
         }
 
+        // Formtando a data para o padrão local e adicionando um dia, pois ele perde um dia na conversão
+        const releaseDateUTC = new Date(movie.release_date + "T24:00:00Z");
+        const timezone = "America/Recife";
+        const options: Intl.DateTimeFormatOptions = {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          timeZone: timezone,
+        };
+
+        // Retornando a data
+        const formattedDate = releaseDateUTC.toLocaleDateString(
+          "pt-BR",
+          options
+        );
+
+        // Formatando o rating para até 2 casas pós vírgula
+        const rating = parseFloat(movie.vote_average).toFixed(2);
+
+        // Retornando esses valores para usar nos cards
         return {
           image: `https://image.tmdb.org/t/p/w500/${movie.poster_path}`,
           title: movie.title,
           description: description,
-          release_date: movie.release_date,
+          release_date: formattedDate,
           genres: movie.genre_ids,
-          rating: movie.vote_average,
+          rating: rating,
         };
       });
 
@@ -210,6 +235,22 @@ const Home = (): JSX.Element => {
                 {selectedMovie?.description}
               </Text>
             </View>
+            <View style={Styles.generalContainer}>
+            <View style={Styles.ratingContainer}>
+              <Text style={Styles.textContainer}>Nota crítica</Text>
+              <View style={Styles.averageScore}>
+                <IconAwesome name="imdb" color='#d5d5d5' size={20}></IconAwesome>
+                <Text style={Styles.numberRatingContainer}>{selectedMovie?.rating}</Text>
+              </View>
+            </View>
+            <View style={Styles.releaseDateContainer}>
+              <Text style={Styles.textContainer}>Data de lançamento</Text>
+              <View style={Styles.dateContainer}>
+                <IconAwesome name="calendar-o" color='#d5d5d5' size={20}></IconAwesome>
+                <Text style={Styles.date}>{selectedMovie?.release_date}</Text>
+              </View>
+            </View>
+          </View>
           </View>
         </Modal>
 

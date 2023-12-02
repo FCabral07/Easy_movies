@@ -5,7 +5,7 @@ import {
   ScrollView,
   Vibration,
   Image,
-  Text
+  Text,
 } from "react-native";
 import { Card } from "@rneui/base";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -75,9 +75,23 @@ export const MovieCard = ({ movie }) => {
           </View>
           <View>
             <Text style={Styles.textDescriptionContainer}>Descrição</Text>
-            <Text style={Styles.textDescriptionModel}>
-              {movie.description}
-            </Text>
+            <Text style={Styles.textDescriptionModel}>{movie.description}</Text>
+          </View>
+          <View style={Styles.generalContainer}>
+            <View style={Styles.ratingContainer}>
+              <Text style={Styles.textContainer}>Nota crítica</Text>
+              <View style={Styles.averageScore}>
+                <Icon name="imdb" color='#d5d5d5' size={20}></Icon>
+                <Text style={Styles.numberRatingContainer}>{movie.rating}</Text>
+              </View>
+            </View>
+            <View style={Styles.releaseDateContainer}>
+              <Text style={Styles.textContainer}>Data de lançamento</Text>
+              <View style={Styles.dateContainer}>
+                <Icon name="calendar-o" color='#d5d5d5' size={20}></Icon>
+                <Text style={Styles.date}>{movie.release_date}</Text>
+              </View>
+            </View>
           </View>
         </View>
       </Modal>
