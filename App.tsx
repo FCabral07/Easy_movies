@@ -12,11 +12,7 @@ import Edit from "./src/screens/Edit";
 import Favorite from "./src/screens/Favorite/Favorite";
 import { LogBox } from "react-native";
 
-LogBox.ignoreLogs(['ViewPropTypes will be removed']);
-
-LogBox.ignoreLogs([
-  'You are initializing Firebase Auth for React Native without providing',
-]);
+LogBox.ignoreLogs(["ViewPropTypes will be removed"]);
 
 // Código main do app
 const App = (): JSX.Element => {

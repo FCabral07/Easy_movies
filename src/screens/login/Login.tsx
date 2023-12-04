@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   ScrollView,
   Text,
@@ -15,14 +15,9 @@ import IconMaterial from "react-native-vector-icons/MaterialIcons";
 import Styles from "./Styles";
 import { useNavigation } from "@react-navigation/native";
 import Logo from "../../components/Logo/ComponentLogo";
-import Toast from "react-native-tiny-toast";
-import FirebaseService from "../../../backend/services/firebaseService";
 
 // Criando a página de login
 const Login = (): JSX.Element => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   // Definindo as constantes de navegação
   const navigation = useNavigation();
 
@@ -34,58 +29,9 @@ const Login = (): JSX.Element => {
     navigation.navigate("JoinNow");
   };
 
-  const handleLoginClick = async () => {
-
-    const data = { email, password }
-
-    if (!email || !password) {
-      // Mostrar um toast indicando que os campos estão vazios
-      Toast.show('Preencha todos os campos!', {
-        containerStyle: {
-          backgroundColor: 'red',
-        },
-        textStyle: {
-          color: 'white',
-        },
-      });
-
-      return;
-    }
-
-    try {
-      const loginAccount = FirebaseService.login(email, password);
-      // const createAccountFirebase = await FirebaseService.login(email, password);
-      // Teste do que foi retornado
-      console.log(loginAccount)
-      // console.log(createAccountFirebase);
-
-      // ESPAÇO PARA COLOCAR O TOAST
-      Toast.showSuccess('Usuário logado com sucesso!', {
-        containerStyle: {
-          backgroundColor: 'green',
-        },
-        textStyle: {
-          color: 'white',
-        },
-      });
-
-      // Navegando para login
-      setTimeout(() => {
-        navigation.navigate('Home')
-      }, 2000);
-    } catch (err) {
-      Toast.show('Erro ao logar!', {
-        containerStyle: {
-          backgroundColor: 'red',
-        },
-        textStyle: {
-          color: 'white',
-        },
-      });
-      console.error('Erro ao fazer login', err);
-      console.error('Erro ao fazer login', err)
-    }
-  }
+  const handleLoginClick = () => {
+    navigation.navigate("Home");
+  };
 
   return (
     // Fundo da página
@@ -129,9 +75,8 @@ const Login = (): JSX.Element => {
                 <Icon name="user" size={25} color="#FFF0F5" style={Styles.icon} />
                 <TextInput
                   style={Styles.input}
-                  placeholder="Email"
+                  placeholder="Login"
                   placeholderTextColor="#FFF0F5"
-                  onChangeText={(text) => setEmail(text)}
                 />
               </View>
               <View style={Styles.inputWithIcon}>
@@ -141,7 +86,6 @@ const Login = (): JSX.Element => {
                   placeholder="Password"
                   placeholderTextColor="#FFF0F5"
                   secureTextEntry={true}
-                  onChangeText={(text) => setPassword(text)}
                 />
               </View>
             </View>
