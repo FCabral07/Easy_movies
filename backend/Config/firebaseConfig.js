@@ -1,12 +1,13 @@
 import { initializeApp } from "firebase/app";
+import { FIREBASE_KEY, FIREBASE_ID } from '../../env'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyApdTPa1cdZy6D1BUTNh061ghMig5od4k8",
+  apiKey: `${FIREBASE_KEY}`,
   authDomain: "izymovies-b8f2e.firebaseapp.com",
   projectId: "izymovies-b8f2e",
   storageBucket: "izymovies-b8f2e.appspot.com",
   messagingSenderId: "438224862362",
-  appId: "1:438224862362:web:f7b45ab4cb54069d6bb323",
+  appId: `${FIREBASE_ID}`,
 };
 
 // Initialize Firebase
