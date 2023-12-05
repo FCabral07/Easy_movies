@@ -4,7 +4,6 @@ import axios from "axios";
 import { TMDB_API_KEY } from "../../../env";
 import { format } from "date-fns";
 import { utcToZonedTime } from "date-fns-tz";
-// import { useNavigation } from "@react-navigation/native";
 import {
   ImageBackground,
   ScrollView,
@@ -130,7 +129,7 @@ const Home = (): JSX.Element => {
     const fetchHorrorMovies = async () => {
       try {
         const data = await fetchMovies("top_rated", 27);
-        // console.log('RESPOSTA DO FILME DE TERROR: ', data);
+        console.log('RESPOSTA DO FILME DE TERROR: ', data);
         setHorrorMovies(data);
       } catch (error) {
         console.error("ERRO DO FILME DE TERROR: ", error);
@@ -236,21 +235,21 @@ const Home = (): JSX.Element => {
               </Text>
             </View>
             <View style={Styles.generalContainer}>
-            <View style={Styles.ratingContainer}>
-              <Text style={Styles.textContainer}>Nota crítica</Text>
-              <View style={Styles.averageScore}>
-                <IconAwesome name="imdb" color='#d5d5d5' size={20}></IconAwesome>
-                <Text style={Styles.numberRatingContainer}>{selectedMovie?.rating}</Text>
+              <View style={Styles.ratingContainer}>
+                <Text style={Styles.textContainer}>Nota crítica</Text>
+                <View style={Styles.averageScore}>
+                  <IconAwesome name="imdb" color='#d5d5d5' size={20}></IconAwesome>
+                  <Text style={Styles.numberRatingContainer}>{selectedMovie?.rating}</Text>
+                </View>
+              </View>
+              <View style={Styles.releaseDateContainer}>
+                <Text style={Styles.textContainer}>Data de lançamento</Text>
+                <View style={Styles.dateContainer}>
+                  <IconAwesome name="calendar-o" color='#d5d5d5' size={20}></IconAwesome>
+                  <Text style={Styles.date}>{selectedMovie?.release_date}</Text>
+                </View>
               </View>
             </View>
-            <View style={Styles.releaseDateContainer}>
-              <Text style={Styles.textContainer}>Data de lançamento</Text>
-              <View style={Styles.dateContainer}>
-                <IconAwesome name="calendar-o" color='#d5d5d5' size={20}></IconAwesome>
-                <Text style={Styles.date}>{selectedMovie?.release_date}</Text>
-              </View>
-            </View>
-          </View>
           </View>
         </Modal>
 

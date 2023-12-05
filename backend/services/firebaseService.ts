@@ -1,7 +1,8 @@
 import App from "../Config/firebaseConfig";
-import { getFirestore, collection, getDocs, addDoc, query, where, doc, deleteDoc } from 'firebase/firestore/lite';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore, collection, getDocs, addDoc, query, where, doc, deleteDoc, getDoc, updateDoc } from 'firebase/firestore/lite';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateEmail, updatePassword } from 'firebase/auth';
 import Toast from "react-native-tiny-toast";
+import { ca } from "date-fns/locale";
 
 // Conectando ao firestore (db), e puxando a função de autenticar
 const firestore = getFirestore(App);
@@ -20,6 +21,27 @@ const FirebaseService = {
 
         return docList;
     },
+    // Buscando um único usuário
+    findUser: async (email: string) => {
+        try {
+            // Pegando a collection e fazendo uma query em busca do email com esse valor
+          const collectionRef = collection(firestore, 'Users');
+          const querySnapshot = await getDocs(query(collectionRef, where('email', '==', email)));
+      
+          // Se a query nao estiver vazia, atribui o usuario com o email
+          if (!querySnapshot.empty) {
+            const documentSnapshot = querySnapshot.docs[0];
+            const data = documentSnapshot.data();
+            return data;
+          } else {
+            // Não encontrado
+            return null;
+          }
+        } catch (error) {
+          console.error('Erro ao buscar documento:', error);
+          return null; // Retorna null em caso de erro
+        }
+      },  
     // Salvando a requisição dos novos usuários (email, nome, username)
     save: async (collectionName: string, data: any, username: string) => {
         try {
@@ -36,6 +58,46 @@ const FirebaseService = {
             }
         } catch (err) {
             console.log('Erro ao salvar o usuário: ', err)
+        }
+    },
+    // Atualizando email/senha do usuário
+    updateUser: async (newEmail: string, newPassword: string) => {
+        try {
+            if(newEmail){
+                await updateEmail(auth.currentUser, newEmail);
+            }
+
+            if (newPassword !== null && newPassword !== '') {
+                await updatePassword(auth.currentUser, newPassword);
+            }
+            
+            
+        } catch (err) {
+            console.error('Erro ao atualizar usuário:', err);
+            return false;
+        }
+    },
+    // Atualizando nome do usuário
+    updateUserName: async (email:string, newName:string) => {
+        try {
+            // Buscando a collection e fazendo a query para achar o user
+            const usersCollection = collection(firestore, 'Users');
+            const userQuery = query(usersCollection, where('email', '==', email));
+            const querySnapshot = await getDocs(userQuery);
+
+            // Se não tiver vazio a query ele aplica a atualização
+            if (!querySnapshot.empty) {
+                const userDoc = querySnapshot.docs[0];
+                const userRef = doc(firestore, 'Users', userDoc.id);
+
+                await updateDoc(userRef, { user: newName });
+                return true; // Sucesso ao atualizar o nome
+            } else {
+                return false; // Usuário não encontrado
+            }
+        } catch (error) {
+            console.error('Erro ao atualizar nome do usuário:', error);
+            return false; // Retorna falso em caso de erro
         }
     },
     delete: async (username: string) => {
@@ -77,6 +139,14 @@ const FirebaseService = {
 
                 console.log(errorMessage, errorCode);
             });
+    },
+    // Função de deslogar
+    signOut: async () => {
+        try{
+            await auth.signOut();
+        }catch(err){
+            console.error('Erro ao fazer logout: ', err);
+        }
     },
     // Função de criar usuário
     createUser: (email: string, password: string) => {

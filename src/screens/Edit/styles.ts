@@ -46,6 +46,12 @@ export const TextNameBold = styled.Text`
     font-weight: bold;
 `
 
+export const TextNameBoldLock = styled.Text`
+    color: #f0f0f0;
+    font-size: 18px;
+    font-weight: bold;
+`
+
 export const Line = styled.View`
     height: 2px;
     width: 100%;
@@ -76,12 +82,24 @@ export const ContainerInputBox = styled.TextInput`
     padding-left: 10px;
     margin-top: 20px;
     margin-bottom: 10px;
+    color: #f0f0f0
+`
+export const ContainerInputBoxLock = styled.TextInput`
+    background-color: #413e48 ;
+    width: 70%;
+    height: 30px;
+    border-radius: 8px;
+    padding-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 `
 export const ContainerButtonExit = styled.View`
-    margin-top: 80px; 
+    margin-top: 30px; 
     align-items: center;
     justify-content: center;
+    flex-direction: row;
 `
+
 export const ButtonExit = styled.TouchableOpacity`
     background-color: #413e48;
     width: 35%;
@@ -89,4 +107,6 @@ export const ButtonExit = styled.TouchableOpacity`
     align-items: center;
     justify-content: center;
     border-radius: 4px;
+    margin-left: 10px;
+    margin-right: 10px;
 `

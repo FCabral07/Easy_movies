@@ -17,6 +17,7 @@ import { useNavigation } from "@react-navigation/native";
 import Logo from "../../components/Logo/ComponentLogo";
 import Toast from "react-native-tiny-toast";
 import FirebaseService from "../../../backend/services/firebaseService";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Criando a página de login
 const Login = (): JSX.Element => {
@@ -36,8 +37,6 @@ const Login = (): JSX.Element => {
 
   const handleLoginClick = async () => {
 
-    const data = { email, password }
-
     if (!email || !password) {
       // Mostrar um toast indicando que os campos estão vazios
       Toast.show('Preencha todos os campos!', {
@@ -54,12 +53,11 @@ const Login = (): JSX.Element => {
 
     try {
       const loginAccount = FirebaseService.login(email, password);
-      // const createAccountFirebase = await FirebaseService.login(email, password);
-      // Teste do que foi retornado
-      console.log(loginAccount)
-      // console.log(createAccountFirebase);
 
-      // ESPAÇO PARA COLOCAR O TOAST
+      // Salvando as informações de login no AsyncStorage
+      await AsyncStorage.setItem('userEmail', JSON.stringify(email));
+
+      // Toast
       Toast.showSuccess('Usuário logado com sucesso!', {
         containerStyle: {
           backgroundColor: 'green',
@@ -100,9 +98,9 @@ const Login = (): JSX.Element => {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={Styles.container}
         >
-          <ScrollView 
-          contentContainerStyle={Styles.scrollContainer}
-          showsHorizontalScrollIndicator={false}
+          <ScrollView
+            contentContainerStyle={Styles.scrollContainer}
+            showsHorizontalScrollIndicator={false}
           >
             {/* Criando a seta de voltar */}
             <View>
@@ -120,7 +118,7 @@ const Login = (): JSX.Element => {
 
             {/* Definindo a logo */}
             <View style={Styles.logo}>
-              <Logo/>
+              <Logo />
             </View>
 
             {/* Criando os inputs de login e senha */}
@@ -151,7 +149,7 @@ const Login = (): JSX.Element => {
               <Text onPress={handleCreateAccount} style={Styles.link}>
                 Não tem uma conta? Crie uma
               </Text>
-              <Text onPress={() => {}} style={Styles.link}>
+              <Text onPress={() => { }} style={Styles.link}>
                 Esqueci a senha
               </Text>
             </View>
