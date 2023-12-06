@@ -1,8 +1,8 @@
 import App from "../Config/firebaseConfig";
-import { getFirestore, collection, getDocs, addDoc, query, where, doc, deleteDoc, getDoc, updateDoc } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, addDoc, query, where, doc, deleteDoc, getDoc, updateDoc, setDoc } from 'firebase/firestore/lite';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateEmail, updatePassword } from 'firebase/auth';
 import Toast from "react-native-tiny-toast";
-import { ca } from "date-fns/locale";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Conectando ao firestore (db), e puxando a função de autenticar
 const firestore = getFirestore(App);
@@ -25,23 +25,59 @@ const FirebaseService = {
     findUser: async (email: string) => {
         try {
             // Pegando a collection e fazendo uma query em busca do email com esse valor
-          const collectionRef = collection(firestore, 'Users');
-          const querySnapshot = await getDocs(query(collectionRef, where('email', '==', email)));
-      
-          // Se a query nao estiver vazia, atribui o usuario com o email
-          if (!querySnapshot.empty) {
-            const documentSnapshot = querySnapshot.docs[0];
-            const data = documentSnapshot.data();
-            return data;
-          } else {
-            // Não encontrado
-            return null;
-          }
+            const collectionRef = collection(firestore, 'Users');
+            const querySnapshot = await getDocs(query(collectionRef, where('email', '==', email)));
+
+            // Se a query nao estiver vazia, atribui o usuario com o email
+            if (!querySnapshot.empty) {
+                const documentSnapshot = querySnapshot.docs[0];
+                const data = documentSnapshot.data();
+                return data;
+            } else {
+                // Não encontrado
+                return null;
+            }
         } catch (error) {
-          console.error('Erro ao buscar documento:', error);
-          return null; // Retorna null em caso de erro
+            console.error('Erro ao buscar documento:', error);
+            return null; // Retorna null em caso de erro
         }
-      },  
+    },
+    findMovie: async () => {
+        try {
+            // Buscando o email no asyncstorage
+            const userEmail = (await AsyncStorage.getItem('userEmail')).replace(/['"]+/g, '').trim();
+        
+            // Pegando a collection e fazendo uma query em busca do email com esse valor
+            const collectionRef = collection(firestore, 'Users');
+            const querySnapshot = await getDocs(query(collectionRef, where('email', '==', userEmail)));
+        
+            // Se a query não estiver vazia e encontrar documentos correspondentes
+            if (!querySnapshot.empty) {
+              // Acessa o primeiro documento encontrado
+              const documentSnapshot = querySnapshot.docs[0];
+              // Obtém a referência do documento
+              const userDocRef = doc(firestore, 'Users', documentSnapshot.id);
+        
+              // Obtém os dados do documento
+              const docSnapshot = await getDoc(userDocRef);
+              if (docSnapshot.exists()) {
+                // Retorna os valores de 'favoritesMovies' do documento
+                const favoritesMovies = docSnapshot.data().favoritesMovies;
+                // console.log('Valores de favoritesMovies:', favoritesMovies);
+                return favoritesMovies;
+              } else {
+                console.log('Nenhum documento encontrado para o email:', userEmail);
+                return null;
+              }
+            } else {
+              console.log('Nenhum documento encontrado para o email:', userEmail);
+              return null;
+            }
+          } catch (error) {
+            console.error('Erro ao buscar documento:', error);
+            return null; // Retorna null em caso de erro
+          }
+    },
     // Salvando a requisição dos novos usuários (email, nome, username)
     save: async (collectionName: string, data: any, username: string) => {
         try {
@@ -60,25 +96,85 @@ const FirebaseService = {
             console.log('Erro ao salvar o usuário: ', err)
         }
     },
+    saveMovie: async (movieData: any) => {
+        try {
+            // Buscando o email no asyncstorage
+            const userEmail = (await AsyncStorage.getItem('userEmail')).replace(/['"]+/g, '').trim();
+
+            // Pegando a collection e fazendo uma query em busca do email com esse valor
+            const collectionRef = collection(firestore, 'Users');
+            const querySnapshot = await getDocs(query(collectionRef, where('email', '==', userEmail)));
+
+            // Se a query não estiver vazia e encontrar documentos correspondentes
+            if (!querySnapshot.empty) {
+                // Acessa o primeiro documento encontrado
+                const documentSnapshot = querySnapshot.docs[0];
+                // Obtém a referência do documento
+                const userDocRef = doc(firestore, 'Users', documentSnapshot.id);
+
+                // Atualiza os dados do documento usando a referência
+                await updateDoc(userDocRef, {
+                    favoritesMovies: movieData
+                });
+
+                console.log('Filme salvo com sucesso no documento do usuário!');
+            } else {
+                console.log('Nenhum documento encontrado para o email:', userEmail);
+            }
+        } catch (error) {
+            console.error('Erro ao buscar documento:', error);
+            return null; // Retorna null em caso de erro
+        }
+    },
+    removeMovie: async (movieIdToRemove: any) => {
+        try {
+            const userEmail = (await AsyncStorage.getItem('userEmail')).replace(/['"]+/g, '').trim();
+    
+            const collectionRef = collection(firestore, 'Users');
+            const querySnapshot = await getDocs(query(collectionRef, where('email', '==', userEmail)));
+    
+            if (!querySnapshot.empty) {
+                const documentSnapshot = querySnapshot.docs[0];
+                const userDocRef = doc(firestore, 'Users', documentSnapshot.id);
+    
+                const userData = documentSnapshot.data();
+                const favoritesMovies = userData.favoritesMovies || [];
+    
+                // Remove o movieIdToRemove da lista de favoritos
+                const updatedFavorites = favoritesMovies.filter(movieId => movieId !== movieIdToRemove);
+    
+                // Atualiza o documento com a lista de favoritos atualizada
+                await updateDoc(userDocRef, {
+                    favoritesMovies: updatedFavorites
+                });
+    
+                console.log('ID removido da lista de favoritos com sucesso!');
+            } else {
+                console.log('Nenhum documento encontrado para o email:', userEmail);
+            }
+        } catch (err) {
+            console.error('Erro ao remover ID da lista de favoritos:', err);
+        }
+    },
     // Atualizando email/senha do usuário
     updateUser: async (newEmail: string, newPassword: string) => {
         try {
-            if(newEmail){
+            if (newEmail) {
                 await updateEmail(auth.currentUser, newEmail);
             }
 
             if (newPassword !== null && newPassword !== '') {
                 await updatePassword(auth.currentUser, newPassword);
             }
-            
-            
+
+
         } catch (err) {
             console.error('Erro ao atualizar usuário:', err);
             return false;
         }
     },
     // Atualizando nome do usuário
-    updateUserName: async (email:string, newName:string) => {
+    updateUserName: async (email: string, newName: string) => {
         try {
             // Buscando a collection e fazendo a query para achar o user
             const usersCollection = collection(firestore, 'Users');
@@ -142,9 +238,9 @@ const FirebaseService = {
     },
     // Função de deslogar
     signOut: async () => {
-        try{
+        try {
             await auth.signOut();
-        }catch(err){
+        } catch (err) {
             console.error('Erro ao fazer logout: ', err);
         }
     },

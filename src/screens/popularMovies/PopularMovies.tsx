@@ -66,12 +66,6 @@ const PopularMovies: React.FC = () => {
       genre: "Ação",
       image: "https://image.tmdb.org/t/p/w500/b0Ej6fnXAP8fK75hlyi2jKqdhHz.jpg",
     },
-    {
-      id: 10,
-      title: "Saw X",
-      genre: "Terror",
-      image: "https://image.tmdb.org/t/p/w500/aQPeznSu7XDTrrdCtT5eLiu52Yu.jpg",
-    },
   ];
 
   return (

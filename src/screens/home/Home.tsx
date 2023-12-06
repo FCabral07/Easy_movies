@@ -2,8 +2,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { TMDB_API_KEY } from "../../../env";
-import { format } from "date-fns";
-import { utcToZonedTime } from "date-fns-tz";
 import {
   ImageBackground,
   ScrollView,
@@ -11,6 +9,7 @@ import {
   TouchableOpacity,
   View,
   Image,
+  Vibration,
 } from "react-native";
 import ComponentBar from "../../components/componentBar/ComponentBar";
 import ComponentUpBar from "../../components/componentUpBar/ComponentUpBar";
@@ -20,6 +19,7 @@ import Styles from "./Styles";
 import Modal from "react-native-modal";
 import Icon from "react-native-vector-icons/AntDesign";
 import IconAwesome from 'react-native-vector-icons/FontAwesome'
+import FirebaseService from "../../../backend/services/firebaseService";
 
 // Criando a página home
 const Home = (): JSX.Element => {
@@ -31,6 +31,7 @@ const Home = (): JSX.Element => {
     image: `https://image.tmdb.org/t/p/w500/872585.jpg`,
     title: "Título Padrão",
     description: "Descrição Padrão",
+    id: '0'
   });
 
   // Requisição a API
@@ -73,6 +74,7 @@ const Home = (): JSX.Element => {
 
         // Retornando esses valores para usar nos cards
         return {
+          id: movie.id,
           image: `https://image.tmdb.org/t/p/w500/${movie.poster_path}`,
           title: movie.title,
           description: description,
@@ -97,6 +99,7 @@ const Home = (): JSX.Element => {
         // console.log('RESPOSTA DO POPULAR: ', data);
         setPopularData(data);
         setBgImage({
+          id: data[0].id,
           image: `https://image.tmdb.org/t/p/w500/${data[0].image}`,
           title: data[0].title,
           description: data[0].description,
@@ -145,13 +148,40 @@ const Home = (): JSX.Element => {
   // Estado para controlar a exibição do pop-up
   const [isModalVisible, setModalVisible] = useState(false);
 
+  const favoritesMovie = [];
   // Estado para armazenar os detalhes do filme selecionado
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(favoritesMovie.includes(bgImage.id));
 
   // Função para exibir o pop-up com os detalhes do filme
   const toggleModal = (movie) => {
     setSelectedMovie(movie);
     setModalVisible(!isModalVisible);
+  };
+
+  const addFav = (movie: any) => {
+    function favoritePress() {
+      if (!isFavorite) {
+        favoritesMovie.push(movie.id);
+        FirebaseService.saveMovie(favoritesMovie)
+        console.log("Filme adicionado à lista de Favoritos");
+      } else {
+        FirebaseService.removeMovie(movie.id);
+        const indice = favoritesMovie.indexOf(movie.id);
+        if (indice !== -1) {
+          favoritesMovie.splice(indice, 1); // Remove um elemento a partir do índice encontrado
+          console.log(`Valor ${movie.id} removido do array.\nLista atual: ${favoritesMovie}`);
+        } else {
+          console.log(`Valor ${movie.id} não encontrado no array.`);
+        }
+        console.log("Filme removido da lista de Favoritos");
+      }
+    }
+    favoritePress();
+    Vibration.vibrate();
+    console.log("Lista Atual:");
+    console.log(favoritesMovie);
+    setIsFavorite(!isFavorite);
   };
 
   return (
@@ -180,7 +210,10 @@ const Home = (): JSX.Element => {
               style={Styles.linearGradient}
             >
               <View style={Styles.buttonsContainer}>
-                <TouchableOpacity style={Styles.buttonFavorite}>
+                <TouchableOpacity 
+                  style={Styles.buttonFavorite}
+                  onPress={() => addFav(bgImage)}
+                >
                   <Text style={Styles.buttonText}>+ Favorito</Text>
                 </TouchableOpacity>
                 <TouchableOpacity

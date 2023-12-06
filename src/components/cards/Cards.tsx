@@ -10,28 +10,28 @@ import {
 import { Card } from "@rneui/base";
 import Icon from "react-native-vector-icons/FontAwesome";
 import IconClose from "react-native-vector-icons/AntDesign";
-import Styles from "../popularCards/Styles";
+import Styles from "../cards/Styles";
 import Modal from "react-native-modal";
 import FirebaseService from "../../../backend/services/firebaseService";
 
-export const favoritesMovie = [];
+export const favoritesMovies = [];
 
-export const MovieCard = ({ movie }) => {
-  const [isFavorite, setIsFavorite] = useState(favoritesMovie.includes(movie.id));
+export const Cards = ({ movie }) => {
+  const [isFavorite, setIsFavorite] = useState(favoritesMovies.includes(movie.id));
   const [isModalVisible, setModalVisible] = useState(false);
 
   const handleFavoritePress = () => {
     function favoritePress() {
       if (!isFavorite) {
-        favoritesMovie.push(movie.id);
-        FirebaseService.saveMovie(favoritesMovie)
+        favoritesMovies.push(movie.id);
+        FirebaseService.saveMovie(favoritesMovies);
         console.log("Filme adicionado à lista de Favoritos");
       } else {
         FirebaseService.removeMovie(movie.id);
-        const indice = favoritesMovie.indexOf(movie.id);
+        const indice = favoritesMovies.indexOf(movie.id);
         if (indice !== -1) {
-          favoritesMovie.splice(indice, 1); // Remove um elemento a partir do índice encontrado
-          console.log(`Valor ${movie.id} removido do array.\nLista atual: ${favoritesMovie}`);
+          favoritesMovies.splice(indice, 1); // Remove um elemento a partir do índice encontrado
+          console.log(`Valor ${movie.id} removido do array.\nLista atual: ${favoritesMovies}`);
         } else {
           console.log(`Valor ${movie.id} não encontrado no array.`);
         }
@@ -41,7 +41,7 @@ export const MovieCard = ({ movie }) => {
     favoritePress();
     Vibration.vibrate();
     console.log("Lista Atual:");
-    console.log(favoritesMovie);
+    console.log(favoritesMovies);
     setIsFavorite(!isFavorite);
   };
 
@@ -108,16 +108,4 @@ export const MovieCard = ({ movie }) => {
   );
 };
 
-const PopularCards = ({ movies }) => {
-  return (
-    <ScrollView horizontal>
-      <View style={{ flexDirection: "row" }}>
-        {movies.map((movie, i) => (
-          <MovieCard key={i} movie={movie} />
-        ))}
-      </View>
-    </ScrollView>
-  );
-};
-
-export default PopularCards;
+export default Cards;
