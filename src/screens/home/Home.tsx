@@ -159,31 +159,6 @@ const Home = (): JSX.Element => {
     setModalVisible(!isModalVisible);
   };
 
-  const addFav = (movie: any) => {
-    function favoritePress() {
-      if (!isFavorite) {
-        favoritesMovie.push(movie.id);
-        FirebaseService.saveMovie(favoritesMovie)
-        console.log("Filme adicionado à lista de Favoritos");
-      } else {
-        FirebaseService.removeMovie(movie.id);
-        const indice = favoritesMovie.indexOf(movie.id);
-        if (indice !== -1) {
-          favoritesMovie.splice(indice, 1); // Remove um elemento a partir do índice encontrado
-          console.log(`Valor ${movie.id} removido do array.\nLista atual: ${favoritesMovie}`);
-        } else {
-          console.log(`Valor ${movie.id} não encontrado no array.`);
-        }
-        console.log("Filme removido da lista de Favoritos");
-      }
-    }
-    favoritePress();
-    Vibration.vibrate();
-    console.log("Lista Atual:");
-    console.log(favoritesMovie);
-    setIsFavorite(!isFavorite);
-  };
-
   return (
     // Criando o container
     <View style={Styles.container}>
@@ -212,9 +187,8 @@ const Home = (): JSX.Element => {
               <View style={Styles.buttonsContainer}>
                 <TouchableOpacity 
                   style={Styles.buttonFavorite}
-                  onPress={() => addFav(bgImage)}
                 >
-                  <Text style={Styles.buttonText}>+ Favorito</Text>
+                  <Text style={Styles.buttonText}>+Favorito</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={Styles.buttonDetails}

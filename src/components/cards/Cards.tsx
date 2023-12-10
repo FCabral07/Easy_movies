@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   TouchableOpacity,
@@ -12,36 +12,57 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import IconClose from "react-native-vector-icons/AntDesign";
 import Styles from "../cards/Styles";
 import Modal from "react-native-modal";
+import { FavoritesAdd, FavoritesRemove, VerifyFavorites } from "../favorites/favorites";
 import FirebaseService from "../../../backend/services/firebaseService";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const favoritesMovies = [];
+const ReturnEmail = () => {
+  return AsyncStorage.getItem('userEmail')
+    .then((email) => {
+      const formattedEmail = email?.replace(/['"]+/g, '').trim();
+      return formattedEmail;
+    })
+    .catch((error) => {
+      console.log(error);
+      return null;
+    });
+};
 
 export const Cards = ({ movie }) => {
-  const [isFavorite, setIsFavorite] = useState(favoritesMovies.includes(movie.id));
   const [isModalVisible, setModalVisible] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userEmail = await ReturnEmail();
+
+        if (userEmail) {
+          const favoritesMovie = await FirebaseService.getFavoritesMovies(userEmail);
+          setIsFavorite(favoritesMovie.includes(movie.id));
+        } else {
+          console.log('Email não encontrado');
+        }
+      } catch (error) {
+        console.error('Erro ao buscar filmes favoritos.', error)
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleFavoritePress = () => {
     function favoritePress() {
-      if (!isFavorite) {
-        favoritesMovies.push(movie.id);
-        FirebaseService.saveMovie(favoritesMovies);
-        console.log("Filme adicionado à lista de Favoritos");
+      if (!VerifyFavorites({ movie })) {
+        FavoritesAdd({ movie });
       } else {
-        FirebaseService.removeMovie(movie.id);
-        const indice = favoritesMovies.indexOf(movie.id);
-        if (indice !== -1) {
-          favoritesMovies.splice(indice, 1); // Remove um elemento a partir do índice encontrado
-          console.log(`Valor ${movie.id} removido do array.\nLista atual: ${favoritesMovies}`);
-        } else {
-          console.log(`Valor ${movie.id} não encontrado no array.`);
-        }
+        FavoritesRemove({ movie });
         console.log("Filme removido da lista de Favoritos");
       }
-    }
+    };
+
+
     favoritePress();
-    Vibration.vibrate();
-    console.log("Lista Atual:");
-    console.log(favoritesMovies);
     setIsFavorite(!isFavorite);
   };
 
@@ -71,7 +92,6 @@ export const Cards = ({ movie }) => {
           <Image
             source={{ uri: movie.image }}
             style={Styles.imageModal}
-          // resizeMode="cover"
           />
           <TouchableOpacity
             onPress={() => setModalVisible(false)}

@@ -71,7 +71,7 @@ const Favorite: React.FC = () => {
     const fetchData = async () => {
       try {
         const result = await FirebaseService.findMovie();
-        setFavs(result);
+        setFavs(result || []);
       } catch (error) {
         console.error('Erro ao buscar filmes:', error);
       }

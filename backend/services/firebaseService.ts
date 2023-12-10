@@ -156,6 +156,25 @@ const FirebaseService = {
             console.error('Erro ao remover ID da lista de favoritos:', err);
         }
     },
+    // Procurando na lista dos favoritesMovies:
+    getFavoritesMovies: async (email) => {
+        try {
+          const userRef = collection(firestore, 'Users');
+          const querySnapshot = await getDocs(query(userRef, where('email', '==', email)));
+    
+          if (!querySnapshot.empty) {
+            const userData = querySnapshot.docs[0].data();
+            const favoritesMovies = userData.favoritesMovies || [];
+            return favoritesMovies;
+          } else {
+            console.log('Nenhum documento encontrado para o email:', email);
+            return [];
+          }
+        } catch (error) {
+          console.error('Erro ao obter favoritesMovies:', error);
+          throw error;
+        }
+      },
     // Atualizando email/senha do usuário
     updateUser: async (newEmail: string, newPassword: string) => {
         try {
