@@ -6,6 +6,7 @@ import ComponentBar from "../../components/componentBar/ComponentBar";
 import * as S from './Styles'
 import FirebaseService from "../../../backend/services/firebaseService";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { resetFavoritesMovies } from "../../components/favorites/Favorites";
 
 // Criando a página home
 const Profile = (): JSX.Element => {
@@ -19,12 +20,15 @@ const Profile = (): JSX.Element => {
         navigation.navigate("Edit");
     };
 
-    const handleLoginClick = async () => {
+    const handleLogoutClick = async () => {
         // Apagando o userEmail do AsyncStorage
         await AsyncStorage.removeItem('userEmail');
 
         // Deslogando o usuário
         await FirebaseService.signOut();
+
+        // Redefinindo o favoritesMovies
+        resetFavoritesMovies();
 
         // Levando de volta a tela de login
         navigation.navigate("Login");
@@ -90,7 +94,7 @@ const Profile = (): JSX.Element => {
                         <S.TextNameBold>Nome:</S.TextNameBold> {userDetails ? userDetails.user : 'Carregando...'}
                     </S.ItalicText>
                     <S.ContainerButtonExit>
-                        <S.ButtonExit onPress={handleLoginClick}>
+                        <S.ButtonExit onPress={handleLogoutClick}>
                             <S.TextNameBold>
                                 Sair
                             </S.TextNameBold>

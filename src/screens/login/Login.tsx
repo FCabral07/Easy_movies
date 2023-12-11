@@ -18,6 +18,7 @@ import Logo from "../../components/Logo/ComponentLogo";
 import Toast from "react-native-tiny-toast";
 import FirebaseService from "../../../backend/services/firebaseService";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FavoritesLogin } from "../../components/favorites/Favorites";
 
 // Criando a página de login
 const Login = (): JSX.Element => {
@@ -56,6 +57,9 @@ const Login = (): JSX.Element => {
 
       // Salvando as informações de login no AsyncStorage
       await AsyncStorage.setItem('userEmail', JSON.stringify(email));
+
+      // Carregando a lista de favoritos
+      FavoritesLogin();
 
       // Toast
       Toast.showSuccess('Usuário logado com sucesso!', {

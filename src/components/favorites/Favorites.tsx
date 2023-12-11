@@ -4,8 +4,9 @@ import {
 } from "react-native";
 
 import FirebaseService from "../../../backend/services/firebaseService";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const favoritesMovies = [];
+export let favoritesMovies = [];
 
 export const FavoritesAdd = ({ movie }) => {
     try {
@@ -21,6 +22,24 @@ export const FavoritesAdd = ({ movie }) => {
     console.log(favoritesMovies);
 };
 
+export const FavoritesLogin = async () => {
+    try {
+        const userEmail = (await AsyncStorage.getItem('userEmail')).replace(/['"]+/g, '').trim();
+
+        if (userEmail) {
+            const favoritesMovie = await FirebaseService.getFavoritesMovies(userEmail);
+
+            favoritesMovies = favoritesMovie;
+
+            console.log('Filmes favoritos carregados:', favoritesMovies);
+        } else {
+            console.log('Email não encontrado');
+        }
+    } catch (error) {
+        console.error('Erro ao buscar filmes favoritos.', error)
+    }
+}
+
 export const FavoritesRemove = ({ movie }) => {
     FirebaseService.removeMovie(movie.id);
     const indice = favoritesMovies.indexOf(movie.id);
@@ -34,12 +53,18 @@ export const FavoritesRemove = ({ movie }) => {
     console.log("Filme removido da lista de Favoritos");
     console.log("Lista Atual:");
     console.log(favoritesMovies);
-}
+};
+
+export const resetFavoritesMovies = () => {
+    // Zera a lista de favoritos
+    favoritesMovies = [];
+    console.log('Lista favoritos zerada', favoritesMovies);
+};
 
 export const VerifyFavorites = ({ movie }) => {
-    if(favoritesMovies.includes(movie.id)){
+    if (favoritesMovies.includes(movie.id)) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
