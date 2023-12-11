@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import { useState } from 'react';
 import { FlatList, Keyboard, View } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import Cards from '../cards/Cards';
-import Styles from './Styles';
 import ComponentBar from '../componentBar/ComponentBar';
-import axios from 'axios';
+import Styles from './Styles';
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');

@@ -1,4 +1,3 @@
-import React from "react";
 import { View } from "react-native"; // Import StyleSheet
 import ComponentBar from "../../components/componentBar/ComponentBar";
 import SearchBar from "../../components/searchBar/SearchBar";

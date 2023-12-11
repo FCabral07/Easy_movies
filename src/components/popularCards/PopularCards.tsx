@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
-import {
-  View,
-  TouchableOpacity,
-  ScrollView,
-  Vibration,
-  Image,
-  Text,
-} from "react-native";
-import { Card } from "@rneui/base";
-import Icon from "react-native-vector-icons/FontAwesome";
-import IconClose from "react-native-vector-icons/AntDesign";
-import Styles from "../popularCards/Styles";
-import Modal from "react-native-modal";
-import { FavoritesAdd, FavoritesRemove, VerifyFavorites } from '../favorites/Favorites';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Card } from "@rneui/base";
+import { useEffect, useState } from "react";
+import {
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
+import Modal from "react-native-modal";
+import IconClose from "react-native-vector-icons/AntDesign";
+import Icon from "react-native-vector-icons/FontAwesome";
 import FirebaseService from "../../../backend/services/firebaseService";
+import { FavoritesAdd, FavoritesRemove, VerifyFavorites } from '../favorites/Favorites';
+import Styles from "../popularCards/Styles";
 
 const ReturnEmail = () => {
   return AsyncStorage.getItem('userEmail')
