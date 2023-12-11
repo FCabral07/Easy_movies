@@ -12,7 +12,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import IconClose from "react-native-vector-icons/AntDesign";
 import Styles from "../popularCards/Styles";
 import Modal from "react-native-modal";
-import { FavoritesAdd, FavoritesRemove, VerifyFavorites } from "../favorites/favorites";
+import { FavoritesAdd, FavoritesRemove, VerifyFavorites } from '../favorites/Favorites';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import FirebaseService from "../../../backend/services/firebaseService";
 

@@ -180,6 +180,9 @@ const FirebaseService = {
         try {
             if (newEmail) {
                 await updateEmail(auth.currentUser, newEmail);
+
+                // Atualiza o e-mail no AsyncStorage
+                await AsyncStorage.setItem('userEmail', newEmail);
             }
 
             if (newPassword !== null && newPassword !== '') {

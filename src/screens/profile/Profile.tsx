@@ -30,29 +30,29 @@ const Profile = (): JSX.Element => {
         navigation.navigate("Login");
     };
 
+    // Buscando e setando os detalhes do usuário
+    const fetchUserDetails = async () => {
+        try {
+          // Obtendo o email do AsyncStorage
+          const userEmail = (await AsyncStorage.getItem('userEmail')).replace(/['"]+/g, '').trim();
+      
+          if (userEmail) {
+            // Busca os detalhes do usuário com base no email
+            const user = await FirebaseService.findUser(userEmail);
+      
+            // Verifica se o usuário retornado não é nulo antes de acessar as propriedades
+            if (user) {
+              // Define os detalhes do usuário no useState acima
+              setUserDetails(user);
+            }
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      };
+
     // Recuperando as informações do AsyncStorage
     useEffect(() => {
-        // Buscando e setando os detalhes do usuário
-        const fetchUserDetails = async () => {
-            try {
-              // Obtendo o email do AsyncStorage
-              const userEmail = (await AsyncStorage.getItem('userEmail')).replace(/['"]+/g, '').trim();
-          
-              if (userEmail) {
-                // Busca os detalhes do usuário com base no email
-                const user = await FirebaseService.findUser(userEmail);
-          
-                // Verifica se o usuário retornado não é nulo antes de acessar as propriedades
-                if (user) {
-                  // Define os detalhes do usuário no useState acima
-                  setUserDetails(user);
-                }
-              }
-            } catch (err) {
-              console.error(err);
-            }
-          };
-    
         // Chama a função para poder funcionar
         fetchUserDetails();
       }, []);

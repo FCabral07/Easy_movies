@@ -18,6 +18,22 @@ const Edit = (): JSX.Element => {
 
     const navigation = useNavigation();
 
+    const fetchUserDetails = async () => {
+        try {
+            // Obtendo o email do AsyncStorage
+            const userEmail = (await AsyncStorage.getItem('userEmail')).replace(/['"]+/g, '').trim();
+            setEmail(userEmail);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    // Recuperando as informações do AsyncStorage
+    useEffect(() => {
+        // Chama a função para poder funcionar
+        fetchUserDetails();
+    }, []);
+
     const handleLoginClick = () => {
         navigation.navigate("Profile" as never);
     };
@@ -30,6 +46,7 @@ const Edit = (): JSX.Element => {
                 position: Toast.position.CENTER
             });
         } catch (err) {
+            console.log('Email não atualizada: ', err);
             Toast.show('Usuário não atualizado, consulte um operador.', {
                 position: Toast.position.CENTER,
                 containerStyle: {
@@ -40,7 +57,7 @@ const Edit = (): JSX.Element => {
                 },
             });
 
-            console.log('Email não atualizada: ', err);
+
         }
     };
 
@@ -110,6 +127,9 @@ const Edit = (): JSX.Element => {
 
         if (name) {
             updateUserName(name);
+            setTimeout(() => {
+                navigation.navigate('Profile')
+            }, 3000);
         }
     };
 
@@ -171,8 +191,8 @@ const Edit = (): JSX.Element => {
                         <S.TextNameBold>Email:</S.TextNameBold>
                         <S.ContainerInputBox
                             placeholder={userDetails ? userDetails.email : 'Carregando...'}
-                            placeholderTextColor="#f0f0f0"
-                            onChangeText={(text) => setEmail(text)} />
+                            placeholderTextColor="#808080"
+                            editable={false} />
                     </S.ContainerInput>
                     <S.ContainerInput>
                         <S.TextNameBold>Senha:</S.TextNameBold>

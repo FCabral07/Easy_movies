@@ -12,7 +12,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import IconClose from "react-native-vector-icons/AntDesign";
 import Styles from "../cards/Styles";
 import Modal from "react-native-modal";
-import { FavoritesAdd, FavoritesRemove, VerifyFavorites } from "../favorites/favorites";
+import { FavoritesAdd, FavoritesRemove, VerifyFavorites, favoritesMovies } from "../favorites/Favorites";
 import FirebaseService from "../../../backend/services/firebaseService";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -55,8 +55,10 @@ export const Cards = ({ movie }) => {
     function favoritePress() {
       if (!VerifyFavorites({ movie })) {
         FavoritesAdd({ movie });
+        setIsFavorite(true);
       } else {
         FavoritesRemove({ movie });
+        setIsFavorite(false);
         console.log("Filme removido da lista de Favoritos");
       }
     };
