@@ -2,24 +2,26 @@ import { StyleSheet } from "react-native";
 
 const Styles = StyleSheet.create({
   fixedContainer: {
-    position: "absolute",
-    marginTop: "0%",
-    width: "100%",
-    height: "6%",
+    padding: 12,
     flexDirection: "row",
-    zIndex: 1,
-    backgroundColor: '#060d17'
+    backgroundColor: "#060d17",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
-  iconContainer: {
-    marginLeft: 85,
-    marginTop: 66,
+  emptyView: {
+    flex: 1,
+  },
+  searchButton: {
+    flex: 1,
+    
+    alignItems: 'flex-end'
   },
   appName: {
-    marginLeft: '31%',
-    color:'#FBC500',
-    marginTop: 60,
+    color: "#FBC500",
+    flex: 2,
     fontSize: 30,
-  }
+    textAlign: "center",
+  },
 });
 
 export default Styles;

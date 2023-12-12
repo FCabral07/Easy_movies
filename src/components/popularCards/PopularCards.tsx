@@ -1,24 +1,22 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Card } from "@rneui/base";
 import { useEffect, useState } from "react";
-import {
-  Image,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View
-} from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Modal from "react-native-modal";
 import IconClose from "react-native-vector-icons/AntDesign";
 import Icon from "react-native-vector-icons/FontAwesome";
 import FirebaseService from "../../../backend/services/firebaseService";
-import { FavoritesAdd, FavoritesRemove, VerifyFavorites } from '../favorites/Favorites';
+import {
+  FavoritesAdd,
+  FavoritesRemove,
+  VerifyFavorites,
+} from "../favorites/Favorites";
 import Styles from "../popularCards/Styles";
 
 const ReturnEmail = () => {
-  return AsyncStorage.getItem('userEmail')
+  return AsyncStorage.getItem("userEmail")
     .then((email) => {
-      const formattedEmail = email?.replace(/['"]+/g, '').trim();
+      const formattedEmail = email?.replace(/['"]+/g, "").trim();
       return formattedEmail;
     })
     .catch((error) => {
@@ -37,13 +35,15 @@ export const MovieCard = ({ movie }) => {
         const userEmail = await ReturnEmail();
 
         if (userEmail) {
-          const favoritesMovie = await FirebaseService.getFavoritesMovies(userEmail);
+          const favoritesMovie = await FirebaseService.getFavoritesMovies(
+            userEmail
+          );
           setIsFavorite(favoritesMovie.includes(movie.id));
         } else {
-          console.log('Email não encontrado');
+          console.log("Email não encontrado");
         }
       } catch (error) {
-        console.error('Erro ao buscar filmes favoritos.', error)
+        console.error("Erro ao buscar filmes favoritos.", error);
       }
     };
 
@@ -58,15 +58,20 @@ export const MovieCard = ({ movie }) => {
         FavoritesRemove({ movie });
         console.log("Filme removido da lista de Favoritos");
       }
-    };
-
+    }
 
     favoritePress();
   };
 
   return (
     <View style={Styles.cardContainer}>
-      <Card containerStyle={{ backgroundColor: "#060d17", borderWidth: 0, padding: 0 }}>
+      <Card
+        containerStyle={{
+          backgroundColor: "#060d17",
+          borderWidth: 0,
+          padding: 0,
+        }}
+      >
         <TouchableOpacity onPress={() => setModalVisible(true)}>
           <Card.Image
             source={{ uri: movie.image }}
@@ -90,7 +95,7 @@ export const MovieCard = ({ movie }) => {
           <Image
             source={{ uri: movie.image }}
             style={Styles.imageModal}
-          // resizeMode="cover"
+            // resizeMode="cover"
           />
           <TouchableOpacity
             onPress={() => setModalVisible(false)}
@@ -109,14 +114,14 @@ export const MovieCard = ({ movie }) => {
             <View style={Styles.ratingContainer}>
               <Text style={Styles.textContainer}>Nota crítica</Text>
               <View style={Styles.averageScore}>
-                <Icon name="imdb" color='#d5d5d5' size={20}></Icon>
+                <Icon name="imdb" color="#d5d5d5" size={20}></Icon>
                 <Text style={Styles.numberRatingContainer}>{movie.rating}</Text>
               </View>
             </View>
             <View style={Styles.releaseDateContainer}>
               <Text style={Styles.textContainer}>Data de lançamento</Text>
               <View style={Styles.dateContainer}>
-                <Icon name="calendar-o" color='#d5d5d5' size={20}></Icon>
+                <Icon name="calendar-o" color="#d5d5d5" size={20}></Icon>
                 <Text style={Styles.date}>{movie.release_date}</Text>
               </View>
             </View>
@@ -129,12 +134,10 @@ export const MovieCard = ({ movie }) => {
 
 const PopularCards = ({ movies }) => {
   return (
-    <ScrollView horizontal>
-      <View style={{ flexDirection: "row" }}>
-        {movies.map((movie, i) => (
-          <MovieCard key={i} movie={movie} />
-        ))}
-      </View>
+    <ScrollView horizontal contentContainerStyle={{ flexDirection: "row" }}>
+      {movies.map((movie, i) => (
+        <MovieCard key={i} movie={movie} />
+      ))}
     </ScrollView>
   );
 };

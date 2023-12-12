@@ -3,73 +3,60 @@ import { StyleSheet } from "react-native";
 const Styles = StyleSheet.create({
   container: {
     backgroundColor: "#060d17",
-    width: "100%",
-    height: "200%",
-    color: "#d5d5d5",
+    flex: 1,
+  },
+  content: {
+    flexGrow: 1,
+    backgroundColor: "#060d17",
+    paddingBottom: 50,
   },
   focus: {
-    height: "14%",
-    backgroundColor: "#transparent",
+    backgroundColor: "transparent",
     borderRadius: 20,
   },
   imageFocus: {
-    flex: 1,
-    resizeMode: 'contain',
+    height: 400,
+    resizeMode: "contain",
   },
   linearGradient: {
-    justifyContent: 'center',
+    justifyContent: "flex-end",
     flex: 1,
+    paddingBottom: 40,
   },
   buttonsContainer: {
-    marginTop: '70%',
     flexDirection: "row",
-    backgroundColor: 'transparent',
-    justifyContent: 'center',
+    backgroundColor: "transparent",
+    justifyContent: "center",
   },
   buttonFavorite: {
     backgroundColor: "#F2C94C",
     padding: 10,
     margin: 5,
     borderRadius: 8,
-    width: '30%',
-    height: '60%',
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: 120,
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonDetails: {
     backgroundColor: "#fff",
-    padding: 10,
+    padding: 16,
     margin: 5,
     borderRadius: 8,
-    width: '30%',
-    height: '60%',
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: 120,
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonText: {
     color: "black",
     fontSize: 15,
   },
-  films: {
-    height: "10%",
-    marginTop: "10%",
-    backgroundColor: "#transparent",
-  },
-  top10: {
-    height: "18%",
-    marginTop: "10%",
-    backgroundColor: "#transparent",
-  },
-  newFilm: {
-    height: "12%",
-  },
-  top10text:{
-    height: '8%',
-  },
+  films: {},
+  top10: {},
+  top10text: {},
   rowMovies: {
     width: 340,
     height: 550,
-    justifyContent: 'center',
+    justifyContent: "center",
     marginLeft: 18,
     marginTop: 0,
   },
@@ -80,91 +67,91 @@ const Styles = StyleSheet.create({
     fontSize: 25,
   },
   containerModal: {
-    backgroundColor: '#180806',
-    width: '100%',
-    height: '90%',
-    marginTop: '5%',
+    backgroundColor: "#180806",
+    width: "100%",
+    height: "90%",
+    marginTop: "5%",
     borderRadius: 20,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   imageModal: {
-    width: '100%',
-    height: '30%',
-    margin: 0
+    width: "100%",
+    height: "30%",
+    margin: 0,
   },
   textTitleContainer: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   textTitleModal: {
-    color: '#FBC500',
+    color: "#FBC500",
     fontSize: 30,
     marginTop: 15,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   iconModal: {
-    position: 'absolute',
+    position: "absolute",
     top: 15,
-    right: 20
+    right: 20,
   },
   textDescriptionContainer: {
-    color: '#d5d5d5',
+    color: "#d5d5d5",
     marginLeft: 15,
     marginVertical: 8,
     fontSize: 20,
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   textDescriptionModel: {
-    color: '#d5d5d5',
+    color: "#d5d5d5",
     fontSize: 12,
     marginHorizontal: 15,
     lineHeight: 14,
-    textAlign: 'justify',
+    textAlign: "justify",
   },
-  generalContainer:{
+  generalContainer: {
     marginVertical: 40,
     marginHorizontal: 15,
-    flexDirection: 'row',
+    flexDirection: "row",
   },
-  ratingContainer:{
+  ratingContainer: {
     flex: 1,
-    alignItems: 'flex-start',
+    alignItems: "flex-start",
   },
-  averageScore:{
-    flexDirection: 'row',
+  averageScore: {
+    flexDirection: "row",
     width: 80,
-    justifyContent: 'center',
-    marginTop: 5
+    justifyContent: "center",
+    marginTop: 5,
   },
-  textContainer:{
-    color: '#d5d5d5',
+  textContainer: {
+    color: "#d5d5d5",
     fontSize: 14,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
-  numberRatingContainer:{
-    color: '#d5d5d5',
+  numberRatingContainer: {
+    color: "#d5d5d5",
     fontSize: 12,
     lineHeight: 14,
-    textAlign: 'justify',
+    textAlign: "justify",
     marginHorizontal: 5,
-    marginVertical: 4
+    marginVertical: 4,
   },
-  releaseDateContainer:{
+  releaseDateContainer: {
     flex: 1,
-    alignItems: 'flex-end'
+    alignItems: "flex-end",
   },
-  dateContainer:{
-    flexDirection: 'row',
+  dateContainer: {
+    flexDirection: "row",
     width: 136,
-    justifyContent: 'center',
-    marginVertical: 6
+    justifyContent: "center",
+    marginVertical: 6,
   },
-  date:{
-    color: '#d5d5d5',
+  date: {
+    color: "#d5d5d5",
     fontSize: 12,
     lineHeight: 14,
-    textAlign: 'justify',
+    textAlign: "justify",
     marginHorizontal: 5,
-    marginVertical: 4
+    marginVertical: 4,
   },
   // Navbar: {
   //   position: 'absolute',
@@ -172,6 +159,16 @@ const Styles = StyleSheet.create({
   //   width: 'auto',
   //   height: '20%',
   // }
+  floatingButton: {
+    position: "absolute",
+    bottom: 100,
+    right: 20,
+    backgroundColor: "#FBC500", // Replace with your desired background color
+    borderRadius: 30,
+    padding: 15,
+    elevation: 5, // For shadow on Android
+    zIndex: 1,
+  },
 });
 
 export default Styles;
