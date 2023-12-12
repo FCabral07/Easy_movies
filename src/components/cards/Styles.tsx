@@ -10,6 +10,8 @@ const Styles = StyleSheet.create({
   cardImage: {
     width: "100%",
     height: "100%",
+    borderRadius: 12,
+
   },
   cardStyle: {
     overflow: "hidden",

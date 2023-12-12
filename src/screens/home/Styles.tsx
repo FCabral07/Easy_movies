@@ -49,6 +49,7 @@ const Styles = StyleSheet.create({
   buttonText: {
     color: "black",
     fontSize: 15,
+    fontWeight: 'bold'
   },
   films: {
     height: "10%",
@@ -78,6 +79,8 @@ const Styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 10,
     fontSize: 25,
+    fontWeight: '500'
+
   },
   containerModal: {
     backgroundColor: "#180806",
