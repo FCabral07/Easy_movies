@@ -68,8 +68,10 @@ export const MovieCard = ({ movie }) => {
       <Card
         containerStyle={{
           backgroundColor: "#060d17",
-          borderWidth: 0,
+          borderWidth: 1,
           padding: 0,
+          borderRadius: 12,
+          borderColor: "#8c8c8c"
         }}
       >
         <TouchableOpacity onPress={() => setModalVisible(true)}>
@@ -134,10 +136,12 @@ export const MovieCard = ({ movie }) => {
 
 const PopularCards = ({ movies }) => {
   return (
-    <ScrollView horizontal contentContainerStyle={{ flexDirection: "row" }}>
-      {movies.map((movie, i) => (
-        <MovieCard key={i} movie={movie} />
-      ))}
+    <ScrollView horizontal>
+      <View style={{ flexDirection: "row" }}>
+        {movies.map((movie, i) => (
+          <MovieCard key={i} movie={movie} />
+        ))}
+      </View>
     </ScrollView>
   );
 };
