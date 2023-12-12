@@ -18,8 +18,10 @@ import Top10Views from "../../components/top10Cards/Top10Cards";
 import Styles from "./Styles";
 import Modal from "react-native-modal";
 import Icon from "react-native-vector-icons/AntDesign";
-import IconAwesome from 'react-native-vector-icons/FontAwesome'
+import IconAwesome from "react-native-vector-icons/FontAwesome";
 import FirebaseService from "../../../backend/services/firebaseService";
+import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 // Criando a página home
 const Home = (): JSX.Element => {
@@ -31,8 +33,10 @@ const Home = (): JSX.Element => {
     image: `https://image.tmdb.org/t/p/w500/872585.jpg`,
     title: "Título Padrão",
     description: "Descrição Padrão",
-    id: '0'
+    id: "0",
   });
+
+  const navigation = useNavigation();
 
   // Requisição a API
   const fetchMovies = async (listType, genreID = null) => {
@@ -132,7 +136,7 @@ const Home = (): JSX.Element => {
     const fetchHorrorMovies = async () => {
       try {
         const data = await fetchMovies("top_rated", 27);
-        console.log('RESPOSTA DO FILME DE TERROR: ', data);
+        console.log("RESPOSTA DO FILME DE TERROR: ", data);
         setHorrorMovies(data);
       } catch (error) {
         console.error("ERRO DO FILME DE TERROR: ", error);
@@ -151,7 +155,9 @@ const Home = (): JSX.Element => {
   const favoritesMovie = [];
   // Estado para armazenar os detalhes do filme selecionado
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [isFavorite, setIsFavorite] = useState(favoritesMovie.includes(bgImage.id));
+  const [isFavorite, setIsFavorite] = useState(
+    favoritesMovie.includes(bgImage.id)
+  );
 
   // Função para exibir o pop-up com os detalhes do filme
   const toggleModal = (movie) => {
@@ -161,16 +167,15 @@ const Home = (): JSX.Element => {
 
   return (
     // Criando o container
-    <View style={Styles.container}>
+    <SafeAreaView style={Styles.container}>
       {/* <View style={Styles.Navbar}>
 
       </View> */}
       <ComponentUpBar />
       {/* Permitindo scrollar */}
       <ScrollView
-        contentContainerStyle={Styles.container}
+        contentContainerStyle={Styles.content}
         indicatorStyle="white"
-        style={{ zIndex: 0 }}
       >
         {/* Criando card principal, onde fica a imagem de destaque */}
         <View style={Styles.focus}>
@@ -185,9 +190,7 @@ const Home = (): JSX.Element => {
               style={Styles.linearGradient}
             >
               <View style={Styles.buttonsContainer}>
-                <TouchableOpacity 
-                  style={Styles.buttonFavorite}
-                >
+                <TouchableOpacity style={Styles.buttonFavorite}>
                   <Text style={Styles.buttonText}>+Favorito</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -203,9 +206,7 @@ const Home = (): JSX.Element => {
 
         {/* Cards populares */}
         <View style={Styles.films}>
-          <View style={Styles.newFilm}>
-            <Text style={Styles.text}>Popular</Text>
-          </View>
+          <Text style={Styles.text}>Popular</Text>
           <PopularCards movies={popularData} />
         </View>
 
@@ -219,7 +220,7 @@ const Home = (): JSX.Element => {
           </View>
         </View>
 
-        {/* Criando o modal, onde eu clico na imagem e ele detalha as informações */}
+        {/* Criando o modal, onde eu clico na imagem e ele detalha as informações 
         <Modal isVisible={isModalVisible}>
           <View style={Styles.containerModal}>
             <Image
@@ -245,39 +246,53 @@ const Home = (): JSX.Element => {
               <View style={Styles.ratingContainer}>
                 <Text style={Styles.textContainer}>Nota crítica</Text>
                 <View style={Styles.averageScore}>
-                  <IconAwesome name="imdb" color='#d5d5d5' size={20}></IconAwesome>
-                  <Text style={Styles.numberRatingContainer}>{selectedMovie?.rating}</Text>
+                  <IconAwesome
+                    name="imdb"
+                    color="#d5d5d5"
+                    size={20}
+                  ></IconAwesome>
+                  <Text style={Styles.numberRatingContainer}>
+                    {selectedMovie?.rating}
+                  </Text>
                 </View>
               </View>
               <View style={Styles.releaseDateContainer}>
                 <Text style={Styles.textContainer}>Data de lançamento</Text>
                 <View style={Styles.dateContainer}>
-                  <IconAwesome name="calendar-o" color='#d5d5d5' size={20}></IconAwesome>
+                  <IconAwesome
+                    name="calendar-o"
+                    color="#d5d5d5"
+                    size={20}
+                  ></IconAwesome>
                   <Text style={Styles.date}>{selectedMovie?.release_date}</Text>
                 </View>
               </View>
             </View>
           </View>
         </Modal>
-
+*/}
         {/* Cards dos gêneros */}
         <View style={Styles.films}>
-          <View style={Styles.newFilm}>
-            <Text style={Styles.text}>Comédia</Text>
-          </View>
+          <Text style={Styles.text}>Comédia</Text>
           <PopularCards movies={comedyMovies} />
         </View>
 
         <View style={Styles.films}>
-          <View style={Styles.newFilm}>
-            <Text style={Styles.text}>Terror</Text>
-          </View>
+          <Text style={Styles.text}>Terror</Text>
           <PopularCards movies={horrorMovies} />
         </View>
       </ScrollView>
+      <TouchableOpacity
+        style={Styles.floatingButton}
+        onPress={() => navigation.navigate("Comments")} // Replace 'Comments' with your actual Comments screen name
+      >
+        <Icon name="message1" color="#fff" size={30} />
+      </TouchableOpacity>
       <ComponentBar />
-    </View>
+    </SafeAreaView>
   );
 };
+
+
 
 export default Home;

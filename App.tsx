@@ -11,11 +11,12 @@ import Profile from "./src/screens/profile/Profile";
 import Edit from "./src/screens/Edit";
 import Favorite from "./src/screens/Favorite/Favorite";
 import { LogBox } from "react-native";
+import Comments from "./src/screens/Comments/Comments";
 
-LogBox.ignoreLogs(['ViewPropTypes will be removed']);
+LogBox.ignoreLogs(["ViewPropTypes will be removed"]);
 
 LogBox.ignoreLogs([
-  'You are initializing Firebase Auth for React Native without providing',
+  "You are initializing Firebase Auth for React Native without providing",
 ]);
 
 // Código main do app
@@ -25,9 +26,9 @@ const App = (): JSX.Element => {
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="JoinNow"
-        screenOptions={{ 
-          gestureEnabled: false, 
-          animation: 'none',
+        screenOptions={{
+          gestureEnabled: false,
+          animation: "none",
         }}
       >
         <Stack.Screen
@@ -70,9 +71,15 @@ const App = (): JSX.Element => {
           component={PopularMovies}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Favorite" 
-        component={Favorite} 
-        options={{ headerShown: false }} 
+        <Stack.Screen
+          name="Favorite"
+          component={Favorite}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Comments"
+          component={Comments}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
