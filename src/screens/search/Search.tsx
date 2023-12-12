@@ -1,10 +1,9 @@
-import React from "react";
 import { View } from "react-native"; // Import StyleSheet
 import ComponentBar from "../../components/componentBar/ComponentBar";
 import SearchBar from "../../components/searchBar/SearchBar";
 import Styles from "./Styles";
 
-const Home = (): JSX.Element => {
+const Search = (): JSX.Element => {
   return (
     <View style={Styles.container}>
       <View style={Styles.searchBarContainer}>
@@ -15,4 +14,4 @@ const Home = (): JSX.Element => {
   );
 };
 
-export default Home;
+export default Search;

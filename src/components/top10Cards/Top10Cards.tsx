@@ -6,6 +6,7 @@ import Styles from './Styles';
 const Top10Views = ({ data, onPressMovie }) => {
   const [activeSlide, setActiveSlide] = useState(0);
 
+  // Criando o carousel de itens, a forma como ele é exibido
   const renderCarouselItem = ({ item }) => (
     <TouchableOpacity onPress={() => onPressMovie(item)}>
       <View style={Styles.carouselItem}>
@@ -17,6 +18,8 @@ const Top10Views = ({ data, onPressMovie }) => {
 
   return (
     <View>
+      {/* Retornando o carrosel, mostrando os dados a serem exibidos, o tamanho
+      e o carrosel criado acima */}
       <Carousel
         data={data}
         renderItem={renderCarouselItem}
@@ -24,6 +27,8 @@ const Top10Views = ({ data, onPressMovie }) => {
         itemWidth={350}
         onSnapToItem={(index) => setActiveSlide(index)}
       />
+      {/* Criando a paginação, onde posso scrollar para o lado e ver os 
+      outros components */}
       <Pagination
         dotsLength={data.length}
         activeDotIndex={activeSlide}

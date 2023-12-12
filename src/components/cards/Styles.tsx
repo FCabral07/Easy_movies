@@ -1,83 +1,23 @@
 import { StyleSheet } from "react-native";
 
 const Styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#060d17",
+  cardContainer: {
+    width: 200,
+    height: 250,
+    padding: 0,
+    marginTop: "2%",
+  },
+  cardImage: {
     width: "100%",
-    height: "200%",
-    color: "#d5d5d5",
+    height: "100%",
   },
-  focus: {
-    height: "14%",
-    backgroundColor: "#transparent",
-    borderRadius: 20,
+  cardStyle: {
+    overflow: "hidden",
   },
-  imageFocus: {
-    flex: 1,
-    resizeMode: 'contain',
-  },
-  linearGradient: {
-    justifyContent: 'center',
-    flex: 1,
-  },
-  buttonsContainer: {
-    marginTop: '70%',
-    flexDirection: "row",
-    backgroundColor: 'transparent',
-    justifyContent: 'center',
-  },
-  buttonFavorite: {
-    backgroundColor: "#F2C94C",
-    padding: 10,
-    margin: 5,
-    borderRadius: 8,
-    width: '30%',
-    height: '60%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonDetails: {
-    backgroundColor: "#fff",
-    padding: 10,
-    margin: 5,
-    borderRadius: 8,
-    width: '30%',
-    height: '60%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonText: {
-    color: "black",
-    fontSize: 15,
-  },
-  films: {
-    height: "10%",
-    marginTop: "10%",
-    backgroundColor: "#transparent",
-  },
-  top10: {
-    height: "18%",
-    marginTop: "10%",
-    backgroundColor: "#transparent",
-  },
-  newFilm: {
-    height: "12%",
-  },
-  top10text:{
-    height: '8%',
-  },
-  rowMovies: {
-    width: 340,
-    height: 550,
-    justifyContent: 'center',
-    marginLeft: 18,
-    marginTop: 0,
-  },
-  text: {
-    color: "#fff",
-    marginTop: 10,
-    marginLeft: 10,
-    fontSize: 25,
+  favoriteIcon: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
   },
   containerModal: {
     backgroundColor: '#180806',
@@ -166,12 +106,6 @@ const Styles = StyleSheet.create({
     marginHorizontal: 5,
     marginVertical: 4
   },
-  // Navbar: {
-  //   position: 'absolute',
-  //   backgroundColor: '#fff',
-  //   width: 'auto',
-  //   height: '20%',
-  // }
 });
 
 export default Styles;

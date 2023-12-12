@@ -1,19 +1,20 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Card } from "@rneui/base";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  Image,
-  ScrollView,
-  Text,
+  View,
   TouchableOpacity,
-  View
+  ScrollView,
+  Vibration,
+  Image,
+  Text,
 } from "react-native";
-import Modal from "react-native-modal";
-import IconClose from "react-native-vector-icons/AntDesign";
+import { Card } from "@rneui/base";
 import Icon from "react-native-vector-icons/FontAwesome";
+import IconClose from "react-native-vector-icons/AntDesign";
+import Styles from "../cards/Styles";
+import Modal from "react-native-modal";
+import { FavoritesAdd, FavoritesRemove, VerifyFavorites, favoritesMovies } from "../favorites/Favorites";
 import FirebaseService from "../../../backend/services/firebaseService";
-import { FavoritesAdd, FavoritesRemove, VerifyFavorites } from '../favorites/Favorites';
-import Styles from "../popularCards/Styles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ReturnEmail = () => {
   return AsyncStorage.getItem('userEmail')
@@ -27,7 +28,7 @@ const ReturnEmail = () => {
     });
 };
 
-export const MovieCard = ({ movie }) => {
+export const Cards = ({ movie }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -54,14 +55,17 @@ export const MovieCard = ({ movie }) => {
     function favoritePress() {
       if (!VerifyFavorites({ movie })) {
         FavoritesAdd({ movie });
+        setIsFavorite(true);
       } else {
         FavoritesRemove({ movie });
+        setIsFavorite(false);
         console.log("Filme removido da lista de Favoritos");
       }
     };
 
 
     favoritePress();
+    setIsFavorite(!isFavorite);
   };
 
   return (
@@ -90,7 +94,6 @@ export const MovieCard = ({ movie }) => {
           <Image
             source={{ uri: movie.image }}
             style={Styles.imageModal}
-          // resizeMode="cover"
           />
           <TouchableOpacity
             onPress={() => setModalVisible(false)}
@@ -127,16 +130,4 @@ export const MovieCard = ({ movie }) => {
   );
 };
 
-const PopularCards = ({ movies }) => {
-  return (
-    <ScrollView horizontal>
-      <View style={{ flexDirection: "row" }}>
-        {movies.map((movie, i) => (
-          <MovieCard key={i} movie={movie} />
-        ))}
-      </View>
-    </ScrollView>
-  );
-};
-
-export default PopularCards;
+export default Cards;

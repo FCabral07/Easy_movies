@@ -2,27 +2,27 @@ import { StyleSheet } from "react-native";
 
 const Styles = StyleSheet.create({
   container: {
-    backgroundColor: "#060d17",
-    width: "100%",
-    height: "185%",
-    color: "#d5d5d5",
+    flex: 1,
+    backgroundColor: '#060d17'
+    // Estilos para o container principal
   },
-  header: {
-    alignItems: "center", // Centraliza o texto no meio
+  moviesContainer: {
+    paddingTop: '20%', // 10% de espaçamento no topo
+    paddingHorizontal: '2%', // Espaçamento horizontal menor para os cards
   },
-  title: {
-    marginTop: "15%",
-    fontSize: 38,
-    fontWeight: "bold",
-    color: "#FBC500", // Cor do título
+  cardContainer: {
+    flex: 1,
+    aspectRatio: 0.75, // Proporção de aspecto do card, ajuste conforme necessário
+    marginVertical: '2%', // Espaçamento vertical entre os cards
+    marginHorizontal: '1%', // Espaçamento horizontal menor entre os cards
+    marginLeft: '-2%', // Margem negativa para compensar o espaço extra
   },
-  filterButton: {
-    position: "absolute",
-    marginTop: "15%",
-    right: 10,
-    padding: 10,
-    borderRadius: 50,
-    alignItems: "center",
+  componentBarContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    // Estilos para fixar o ComponentBar na parte inferior
   },
 });
 

@@ -24,7 +24,7 @@ const Styles = StyleSheet.create({
     zIndex: 0,
   },
   inputContainer: {
-    marginTop: 5,
+    marginTop: 0,
   },
   inputWithIcon: {
     flexDirection: "row",
@@ -47,7 +47,7 @@ const Styles = StyleSheet.create({
   logo: {
     position: 'relative',
     alignItems: "center",
-    marginTop: "50%",
+    marginTop: "35%",
   },
   text: {
     fontSize: 28,

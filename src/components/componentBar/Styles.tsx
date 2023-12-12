@@ -3,10 +3,10 @@ import { StyleSheet } from "react-native";
 const Styles = StyleSheet.create({
   fixedContainer: {
     position: "absolute",
-    marginTop: "196%",
+    marginTop: "200%",
     width: "100%",
     marginLeft: "0%",
-    height: "6%",
+    height: "8%",
     flexDirection: "row",
     backgroundColor: '#060d17'
   },
