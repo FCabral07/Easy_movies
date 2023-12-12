@@ -17,13 +17,13 @@ import { useNavigation } from "@react-navigation/native";
 import Logo from "../../components/Logo/ComponentLogo";
 import Toast from "react-native-tiny-toast";
 import FirebaseService from "../../../backend/services/firebaseService";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FavoritesLogin } from "../../components/favorites/Favorites";
 
 // Criando a página de login
 const Login = (): JSX.Element => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // Definindo as constantes de navegação
   const navigation = useNavigation();
@@ -37,15 +37,14 @@ const Login = (): JSX.Element => {
   };
 
   const handleLoginClick = async () => {
-
     if (!email || !password) {
       // Mostrar um toast indicando que os campos estão vazios
-      Toast.show('Preencha todos os campos!', {
+      Toast.show("Preencha todos os campos!", {
         containerStyle: {
-          backgroundColor: 'red',
+          backgroundColor: "red",
         },
         textStyle: {
-          color: 'white',
+          color: "white",
         },
       });
 
@@ -56,38 +55,38 @@ const Login = (): JSX.Element => {
       const loginAccount = FirebaseService.login(email, password);
 
       // Salvando as informações de login no AsyncStorage
-      await AsyncStorage.setItem('userEmail', JSON.stringify(email));
+      await AsyncStorage.setItem("userEmail", JSON.stringify(email));
 
       // Carregando a lista de favoritos
       FavoritesLogin();
 
       // Toast
-      Toast.showSuccess('Usuário logado com sucesso!', {
+      Toast.showSuccess("Usuário logado com sucesso!", {
         containerStyle: {
-          backgroundColor: 'green',
+          backgroundColor: "green",
         },
         textStyle: {
-          color: 'white',
+          color: "white",
         },
       });
 
       // Navegando para login
       setTimeout(() => {
-        navigation.navigate('Home')
+        navigation.navigate("Home");
       }, 2000);
     } catch (err) {
-      Toast.show('Erro ao logar!', {
+      Toast.show("Erro ao logar!", {
         containerStyle: {
-          backgroundColor: 'red',
+          backgroundColor: "red",
         },
         textStyle: {
-          color: 'white',
+          color: "white",
         },
       });
-      console.error('Erro ao fazer login', err);
-      console.error('Erro ao fazer login', err)
+      console.error("Erro ao fazer login", err);
+      console.error("Erro ao fazer login", err);
     }
-  }
+  };
 
   return (
     // Fundo da página
@@ -128,16 +127,28 @@ const Login = (): JSX.Element => {
             {/* Criando os inputs de login e senha */}
             <View style={Styles.inputContainer}>
               <View style={Styles.inputWithIcon}>
-                <Icon name="user" size={25} color="#FFF0F5" style={Styles.icon} />
+                <Icon
+                  name="user"
+                  size={25}
+                  color="#FFF0F5"
+                  style={Styles.icon}
+                />
                 <TextInput
                   style={Styles.input}
                   placeholder="Email"
                   placeholderTextColor="#FFF0F5"
                   onChangeText={(text) => setEmail(text)}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
                 />
               </View>
               <View style={Styles.inputWithIcon}>
-                <Icon name="lock" size={25} color="#FFF0F5" style={Styles.icon} />
+                <Icon
+                  name="lock"
+                  size={25}
+                  color="#FFF0F5"
+                  style={Styles.icon}
+                />
                 <TextInput
                   style={Styles.input}
                   placeholder="Password"
@@ -153,7 +164,7 @@ const Login = (): JSX.Element => {
               <Text onPress={handleCreateAccount} style={Styles.link}>
                 Não tem uma conta? Crie uma
               </Text>
-              <Text onPress={() => { }} style={Styles.link}>
+              <Text onPress={() => {}} style={Styles.link}>
                 Esqueci a senha
               </Text>
             </View>

@@ -1,29 +1,27 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
 const Styles = StyleSheet.create({
   container: {
     backgroundColor: "#060d17",
-    flex: 1,
-  },
-  content: {
-    flexGrow: 1,
-    backgroundColor: "#060d17",
-    paddingBottom: 50,
+    width: "100%",
+    height: "200%",
+    color: "#d5d5d5",
   },
   focus: {
-    backgroundColor: "transparent",
+    height: "14%",
+    backgroundColor: "#transparent",
     borderRadius: 20,
   },
   imageFocus: {
-    height: 400,
+    flex: 1,
     resizeMode: "contain",
   },
   linearGradient: {
-    justifyContent: "flex-end",
+    justifyContent: "center",
     flex: 1,
-    paddingBottom: 40,
   },
   buttonsContainer: {
+    marginTop: "70%",
     flexDirection: "row",
     backgroundColor: "transparent",
     justifyContent: "center",
@@ -33,16 +31,18 @@ const Styles = StyleSheet.create({
     padding: 10,
     margin: 5,
     borderRadius: 8,
-    width: 120,
+    width: "30%",
+    height: "60%",
     alignItems: "center",
     justifyContent: "center",
   },
   buttonDetails: {
     backgroundColor: "#fff",
-    padding: 16,
+    padding: 10,
     margin: 5,
     borderRadius: 8,
-    width: 120,
+    width: "30%",
+    height: "60%",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -50,9 +50,22 @@ const Styles = StyleSheet.create({
     color: "black",
     fontSize: 15,
   },
-  films: {},
-  top10: {},
-  top10text: {},
+  films: {
+    height: "10%",
+    marginTop: "10%",
+    backgroundColor: "#transparent",
+  },
+  top10: {
+    height: "18%",
+    marginTop: "10%",
+    backgroundColor: "#transparent",
+  },
+  newFilm: {
+    height: "12%",
+  },
+  top10text: {
+    height: "8%",
+  },
   rowMovies: {
     width: 340,
     height: 550,
@@ -161,7 +174,7 @@ const Styles = StyleSheet.create({
   // }
   floatingButton: {
     position: "absolute",
-    bottom: 100,
+    bottom: Dimensions.get("screen").height + 100,
     right: 20,
     backgroundColor: "#FBC500", // Replace with your desired background color
     borderRadius: 30,
