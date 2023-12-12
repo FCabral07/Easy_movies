@@ -6,6 +6,10 @@ const Styles = StyleSheet.create({
     backgroundColor: "#060d17",
     padding: 16,
   },
+  keyboardingAvoidingView: {
+    flex: 1,
+    paddingBottom: 16,
+  },
   header: {
     flexDirection: "row",
     alignItems: "center",
@@ -44,7 +48,7 @@ const Styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: "row",
-    marginTop: 16,
+    marginVertical: 16,
   },
   input: {
     flex: 1,

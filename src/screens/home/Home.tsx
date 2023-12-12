@@ -21,7 +21,6 @@ import Icon from "react-native-vector-icons/AntDesign";
 import IconAwesome from "react-native-vector-icons/FontAwesome";
 import FirebaseService from "../../../backend/services/firebaseService";
 import { useNavigation } from "@react-navigation/native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 // Criando a página home
 const Home = (): JSX.Element => {
@@ -166,16 +165,16 @@ const Home = (): JSX.Element => {
   };
 
   return (
-    // Criando o container
-    <SafeAreaView style={Styles.container}>
+    <View style={Styles.container}>
       {/* <View style={Styles.Navbar}>
 
       </View> */}
       <ComponentUpBar />
       {/* Permitindo scrollar */}
       <ScrollView
-        contentContainerStyle={Styles.content}
+        contentContainerStyle={Styles.container}
         indicatorStyle="white"
+        style={{ zIndex: 0 }}
       >
         {/* Criando card principal, onde fica a imagem de destaque */}
         <View style={Styles.focus}>
@@ -206,7 +205,9 @@ const Home = (): JSX.Element => {
 
         {/* Cards populares */}
         <View style={Styles.films}>
-          <Text style={Styles.text}>Popular</Text>
+          <View style={Styles.newFilm}>
+            <Text style={Styles.text}>Popular</Text>
+          </View>
           <PopularCards movies={popularData} />
         </View>
 
@@ -220,7 +221,7 @@ const Home = (): JSX.Element => {
           </View>
         </View>
 
-        {/* Criando o modal, onde eu clico na imagem e ele detalha as informações 
+        {/* Criando o modal, onde eu clico na imagem e ele detalha as informações */}
         <Modal isVisible={isModalVisible}>
           <View style={Styles.containerModal}>
             <Image
@@ -270,29 +271,31 @@ const Home = (): JSX.Element => {
             </View>
           </View>
         </Modal>
-*/}
+
         {/* Cards dos gêneros */}
         <View style={Styles.films}>
-          <Text style={Styles.text}>Comédia</Text>
+          <View style={Styles.newFilm}>
+            <Text style={Styles.text}>Comédia</Text>
+          </View>
           <PopularCards movies={comedyMovies} />
         </View>
 
         <View style={Styles.films}>
-          <Text style={Styles.text}>Terror</Text>
+          <View style={Styles.newFilm}>
+            <Text style={Styles.text}>Terror</Text>
+          </View>
           <PopularCards movies={horrorMovies} />
         </View>
       </ScrollView>
+      <ComponentBar />
       <TouchableOpacity
         style={Styles.floatingButton}
-        onPress={() => navigation.navigate("Comments")} // Replace 'Comments' with your actual Comments screen name
+        onPress={() => navigation.navigate("Comments")}
       >
         <Icon name="message1" color="#fff" size={30} />
       </TouchableOpacity>
-      <ComponentBar />
-    </SafeAreaView>
+    </View>
   );
 };
-
-
 
 export default Home;

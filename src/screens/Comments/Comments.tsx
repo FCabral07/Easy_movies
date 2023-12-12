@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   Text,
   ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Styles from "./Styles";
@@ -120,49 +122,54 @@ const Comments = (): JSX.Element => {
 
   return (
     <SafeAreaView style={Styles.container}>
-      <View style={Styles.header}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={Styles.backButton}
-        >
-          <Icon name="chevron-left" size={24} color={"#FBC500"} />
-        </TouchableOpacity>
-        <Text style={Styles.title}>Comments</Text>
-      </View>
-
-      {isLoading ? (
-        <View style={Styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#FBC500" />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        style={Styles.keyboardingAvoidingView}
+      >
+        <View style={Styles.header}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={Styles.backButton}
+          >
+            <Icon name="chevron-left" size={24} color={"#FBC500"} />
+          </TouchableOpacity>
+          <Text style={Styles.title}>Comments</Text>
         </View>
-      ) : (
-        <FlatList
-          data={comments}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <View style={Styles.commentContainer}>
-              <Text style={Styles.username}>{item.username}</Text>
-              <Text style={Styles.commentText}>{item.comment}</Text>
-            </View>
-          )}
-        />
-      )}
 
-      {/* Input field for adding new comments */}
-      <View style={Styles.inputContainer}>
-        <TextInput
-          style={Styles.input}
-          placeholder="Add a comment..."
-          value={newComment}
-          onChangeText={(text) => setNewComment(text)}
-        />
-        <TouchableOpacity
-          style={Styles.addButton}
-          onPress={handleAddComment}
-          disabled={isSaving}
-        >
-          <Text style={Styles.addButtonText}>Add</Text>
-        </TouchableOpacity>
-      </View>
+        {isLoading ? (
+          <View style={Styles.loadingContainer}>
+            <ActivityIndicator size="large" color="#FBC500" />
+          </View>
+        ) : (
+          <FlatList
+            data={comments}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <View style={Styles.commentContainer}>
+                <Text style={Styles.username}>{item.username}</Text>
+                <Text style={Styles.commentText}>{item.comment}</Text>
+              </View>
+            )}
+          />
+        )}
+
+        {/* Input field for adding new comments */}
+        <View style={Styles.inputContainer}>
+          <TextInput
+            style={Styles.input}
+            placeholder="Add a comment..."
+            value={newComment}
+            onChangeText={(text) => setNewComment(text)}
+          />
+          <TouchableOpacity
+            style={Styles.addButton}
+            onPress={handleAddComment}
+            disabled={isSaving}
+          >
+            <Text style={Styles.addButtonText}>Add</Text>
+          </TouchableOpacity>
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
