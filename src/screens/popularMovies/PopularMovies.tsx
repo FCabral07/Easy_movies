@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, Alert } from "react-native";
 import PopularMovieCard from "../../components/popularMoviesComponents/PopularMovieCard";
 import Styles from "./Styles";
 import ComponentBar from "../../components/componentBar/ComponentBar";
-const apiKey = "6e6b6111611e5e3d284266b1ae5cfce5";
-const moviesURL = "https://api.themoviedb.org/3/movie/";
+import { TMDB_API_KEY } from "../../../env";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const PopularMovies: React.FC = () => {
   const [popularMovies, setPopularMovies] = useState([]);
+  const [originalMovies, setOriginalMovies] = useState([]);
+  const [isSortedByRating, setIsSortedByRating] = useState(false);
 
   useEffect(() => {
     const getPopularMovies = async () => {
       try {
-        const response = await fetch(`${moviesURL}popular?api_key=${apiKey}`);
+        const response = await fetch(
+          `${"https://api.themoviedb.org/3/movie/"}popular?api_key=${TMDB_API_KEY}`
+        );
 
         if (!response.ok) {
           console.error("Erro na requisição da API:", response.statusText);
@@ -27,6 +31,7 @@ const PopularMovies: React.FC = () => {
         }
 
         setPopularMovies(data.results);
+        setOriginalMovies(data.results); // Armazena a lista original de filmes
       } catch (error) {
         console.error("Erro ao buscar filmes populares:", error);
       }
@@ -35,6 +40,29 @@ const PopularMovies: React.FC = () => {
     getPopularMovies();
   }, []);
 
+  const ordenarPorAvaliacao = () => {
+    const sortedMovies = [...popularMovies].sort(
+      (a, b) => b.vote_average - a.vote_average
+    );
+    setPopularMovies(sortedMovies);
+    setIsSortedByRating(true);
+  };
+
+  const ordenarPorPopularidade = () => {
+    setPopularMovies([...originalMovies]);
+    setIsSortedByRating(false);
+  };
+  const exibirOpcoesOrdenacao = () => {
+    if (isSortedByRating) {
+      Alert.alert("Ordenar Filmes", "", [
+        { text: "Por Popularidade", onPress: ordenarPorPopularidade },
+      ]);
+    } else {
+      Alert.alert("Ordenar Filmes", "", [
+        { text: "Por Avaliação", onPress: ordenarPorAvaliacao },
+      ]);
+    }
+  };
   return (
     <View style={Styles.container}>
       <ScrollView
@@ -44,6 +72,12 @@ const PopularMovies: React.FC = () => {
       >
         <View style={Styles.header}>
           <Text style={Styles.title}>Filmes Populares</Text>
+          <TouchableOpacity
+            style={Styles.sortButton}
+            onPress={exibirOpcoesOrdenacao}
+          >
+            <Icon name="sort" size={24} color="black" />
+          </TouchableOpacity>
         </View>
         <View>
           {popularMovies &&

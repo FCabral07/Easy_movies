@@ -40,6 +40,11 @@ const popularMoviesStyles = StyleSheet.create({
     fontSize: 16,
     color: "red",
   },
+  favoriteIcon: {
+    position: "absolute",
+    top: 25,
+    left: 10,
+  },
 });
 
 export { popularMoviesStyles };
